@@ -63,7 +63,7 @@ hideInToc: true
 
 # Layers 2, 3 and the gate
 
-**Layer 2**: `AGENTS.md` at the repo root (shared with other agents). Pi's small core means your conventions carry more of the load, so make the reasons explicit.
+**Layer 2**: `AGENTS.md` at the repo root. Pi's small core means your conventions carry more of the load, so make the reasons explicit.
 
 **Layer 3**:
 

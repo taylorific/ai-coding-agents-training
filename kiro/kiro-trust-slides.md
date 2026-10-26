@@ -68,7 +68,7 @@ hideInToc: true
 
 # Layers 2, 3 and the gate
 
-**Layer 2**: `AGENTS.md` (shared with other agents) plus steering in `.kiro/steering/`. `structure.md` is a natural home for "the CLI never imports internals, because...".
+**Layer 2**: `AGENTS.md` plus steering in `.kiro/steering/`. `structure.md` is a natural home for "the CLI never imports internals, because...".
 
 **Layer 3**: Kiro builds part of it in. A **spec** is a plan you approve before code is written:
 

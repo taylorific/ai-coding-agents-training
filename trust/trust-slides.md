@@ -24,7 +24,7 @@ Containment limits the damage. It doesn't make the work good.
 
 <!--
 Source for this whole section: Paul Stack, "Agent Trust Is a System Design Problem", 23 April 2026, https://stack72.dev/agent-trust-is-a-system-design-problem/
-His examples use Claude Code's settings, but the model is agent-neutral. The per-agent sections show the same model in each agent's own configuration.
+His examples use one agent's settings, but the model is agent-neutral. The next section shows it in this agent's own configuration.
 -->
 
 ---
@@ -55,7 +55,7 @@ hideInToc: true
 | Layer | Controls | Lives in |
 | --- | --- | --- |
 | **1. Tool permissions** | What the agent can do | The agent's permission settings |
-| **2. Project conventions** | How it writes code | The instructions file (`AGENTS.md`, `CLAUDE.md`, ...) |
+| **2. Project conventions** | How it writes code | The instructions file (`AGENTS.md` or your agent's equivalent) |
 | **3. Context and constraints** | How it thinks about problems | Design docs, stage checklists, skills |
 
 ---
@@ -144,7 +144,7 @@ Then grow the system from what actually goes wrong:
 | writes plans that miss edge cases | review dimensions |
 | repeats domain mistakes | a design doc |
 
-The per-agent sections show Layer 1 in each agent's own settings.
+The next section shows all three layers in your agent's own settings.
 
 <!--
 "Build the trust model. Let the agent work." — closing line of the article.

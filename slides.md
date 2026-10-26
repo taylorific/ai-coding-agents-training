@@ -49,104 +49,333 @@ routeAlias: toc
 
 # Table of Contents
 
-<Toc columns="2"/>
+<Toc columns="2" maxDepth="1"/>
 
 ---
-src: ./fundamentals/fundamentals-slides.md
+hideInToc: true
 ---
 
----
-src: ./practices/practices-slides.md
----
+# One presentation per agent
+
+Each agent has its own presentation, specific to that agent:
+
+- How coding agents work, and how to work with one day to day
+- Installing it on macOS, Linux and Windows, and getting started
+- Its instructions file, permissions and everyday commands
+- Agent trust as a system design problem, in that agent's own settings
+
+Pick yours from the table of contents, or read on for a one-slide summary of each.
 
 ---
-src: ./trust/trust-slides.md
+layout: section
 ---
 
----
-src: ./claude-code/claude-code-slides.md
----
+# Claude Code
+
+<br>
+<br>
+<Link to="toc" title="Table of Contents"/>
 
 ---
-src: ./claude-code/claude-code-trust-slides.md
+hideInToc: true
+class: compact-table
 ---
 
----
-src: ./codex/codex-slides.md
----
+# Claude Code at a glance
+
+| | |
+| --- | --- |
+| **From** | Anthropic |
+| **Start it** | `claude` |
+| **Install** (macOS, Linux) | `curl -fsSL https://claude.ai/install.sh \| bash` |
+| **Instructions file** | `CLAUDE.md` |
+| **Permissions** | Allow, ask and deny rules in `settings.json` |
+
+<div class="mt-8 text-xl">
+
+[Open the Claude Code presentation →](https://taylorific.github.io/ai-coding-agents-training/claude-code/)
+
+</div>
 
 ---
-src: ./codex/codex-trust-slides.md
+layout: section
 ---
 
----
-src: ./gemini-cli/gemini-cli-slides.md
----
+# Codex
+
+<br>
+<br>
+<Link to="toc" title="Table of Contents"/>
 
 ---
-src: ./gemini-cli/gemini-cli-trust-slides.md
+hideInToc: true
+class: compact-table
 ---
 
----
-src: ./antigravity/antigravity-slides.md
----
+# Codex at a glance
+
+| | |
+| --- | --- |
+| **From** | OpenAI |
+| **Start it** | `codex` |
+| **Install** (macOS, Linux) | `npm install -g @openai/codex` |
+| **Instructions file** | `AGENTS.md` |
+| **Permissions** | A sandbox for the repository, plus rules for specific commands |
+
+<div class="mt-8 text-xl">
+
+[Open the Codex presentation →](https://taylorific.github.io/ai-coding-agents-training/codex/)
+
+</div>
 
 ---
-src: ./antigravity/antigravity-trust-slides.md
+layout: section
 ---
 
----
-src: ./cursor/cursor-slides.md
----
+# Gemini CLI
+
+<br>
+<br>
+<Link to="toc" title="Table of Contents"/>
 
 ---
-src: ./cursor/cursor-trust-slides.md
+hideInToc: true
+class: compact-table
 ---
 
----
-src: ./copilot/copilot-slides.md
----
+# Gemini CLI at a glance
+
+| | |
+| --- | --- |
+| **From** | Google |
+| **Start it** | `gemini` |
+| **Install** (macOS, Linux) | `npm install -g @google/gemini-cli` |
+| **Instructions file** | `GEMINI.md` |
+| **Permissions** | Policy-engine rules: allow, ask, deny |
+
+<div class="mt-8 text-xl">
+
+[Open the Gemini CLI presentation →](https://taylorific.github.io/ai-coding-agents-training/gemini-cli/)
+
+</div>
 
 ---
-src: ./copilot/copilot-trust-slides.md
+layout: section
 ---
 
----
-src: ./amp/amp-slides.md
----
+# Antigravity
+
+<br>
+<br>
+<Link to="toc" title="Table of Contents"/>
 
 ---
-src: ./amp/amp-trust-slides.md
+hideInToc: true
+class: compact-table
 ---
 
----
-src: ./kiro/kiro-slides.md
----
+# Antigravity at a glance
+
+| | |
+| --- | --- |
+| **From** | Google |
+| **Start it** | `agy` |
+| **Install** (macOS, Linux) | `curl -fsSL https://antigravity.google/cli/install.sh \| bash` |
+| **Instructions file** | `AGENTS.md`, `GEMINI.md` |
+| **Permissions** | Allow, ask and deny rules in `settings.json` |
+
+<div class="mt-8 text-xl">
+
+[Open the Antigravity presentation →](https://taylorific.github.io/ai-coding-agents-training/antigravity/)
+
+</div>
 
 ---
-src: ./kiro/kiro-trust-slides.md
+layout: section
 ---
 
----
-src: ./opencode/opencode-slides.md
----
+# Cursor
+
+<br>
+<br>
+<Link to="toc" title="Table of Contents"/>
 
 ---
-src: ./opencode/opencode-trust-slides.md
+hideInToc: true
+class: compact-table
 ---
 
----
-src: ./pi/pi-slides.md
----
+# Cursor at a glance
+
+| | |
+| --- | --- |
+| **From** | Anysphere |
+| **Start it** | `agent` |
+| **Install** (macOS, Linux) | `curl https://cursor.com/install -fsS \| bash` |
+| **Instructions file** | `AGENTS.md`, `.cursor/rules/` |
+| **Permissions** | Allow and deny lists; anything unlisted asks |
+
+<div class="mt-8 text-xl">
+
+[Open the Cursor presentation →](https://taylorific.github.io/ai-coding-agents-training/cursor/)
+
+</div>
 
 ---
-src: ./pi/pi-trust-slides.md
+layout: section
 ---
+
+# GitHub Copilot CLI
+
+<br>
+<br>
+<Link to="toc" title="Table of Contents"/>
+
+---
+hideInToc: true
+class: compact-table
+---
+
+# GitHub Copilot CLI at a glance
+
+| | |
+| --- | --- |
+| **From** | GitHub |
+| **Start it** | `copilot` |
+| **Install** (macOS, Linux) | `npm install -g @github/copilot` |
+| **Instructions file** | `AGENTS.md`, `.github/copilot-instructions.md` |
+| **Permissions** | Allow and deny flags; anything unlisted asks |
+
+<div class="mt-8 text-xl">
+
+[Open the GitHub Copilot CLI presentation →](https://taylorific.github.io/ai-coding-agents-training/copilot/)
+
+</div>
+
+---
+layout: section
+---
+
+# Amp
+
+<br>
+<br>
+<Link to="toc" title="Table of Contents"/>
+
+---
+hideInToc: true
+class: compact-table
+---
+
+# Amp at a glance
+
+| | |
+| --- | --- |
+| **From** | Amp |
+| **Start it** | `amp` |
+| **Install** (macOS, Linux) | `curl -fsSL https://ampcode.com/install.sh \| bash` |
+| **Instructions file** | `AGENTS.md` |
+| **Permissions** | No prompts by default; plugins and the remote do the gating |
+
+<div class="mt-8 text-xl">
+
+[Open the Amp presentation →](https://taylorific.github.io/ai-coding-agents-training/amp/)
+
+</div>
+
+---
+layout: section
+---
+
+# Kiro
+
+<br>
+<br>
+<Link to="toc" title="Table of Contents"/>
+
+---
+hideInToc: true
+class: compact-table
+---
+
+# Kiro at a glance
+
+| | |
+| --- | --- |
+| **From** | AWS |
+| **Start it** | `kiro-cli` |
+| **Install** (macOS, Linux) | `curl -fsSL https://cli.kiro.dev/install \| bash` |
+| **Instructions file** | `AGENTS.md`, `.kiro/steering/` |
+| **Permissions** | Allow, ask and deny rules in `permissions.yaml` |
+
+<div class="mt-8 text-xl">
+
+[Open the Kiro presentation →](https://taylorific.github.io/ai-coding-agents-training/kiro/)
+
+</div>
+
+---
+layout: section
+---
+
+# OpenCode
+
+<br>
+<br>
+<Link to="toc" title="Table of Contents"/>
+
+---
+hideInToc: true
+class: compact-table
+---
+
+# OpenCode at a glance
+
+| | |
+| --- | --- |
+| **From** | Anomaly |
+| **Start it** | `opencode` |
+| **Install** (macOS, Linux) | `curl -fsSL https://opencode.ai/install \| bash` |
+| **Instructions file** | `AGENTS.md` |
+| **Permissions** | Allow, ask and deny patterns in `opencode.json` |
+
+<div class="mt-8 text-xl">
+
+[Open the OpenCode presentation →](https://taylorific.github.io/ai-coding-agents-training/opencode/)
+
+</div>
+
+---
+layout: section
+---
+
+# Pi
+
+<br>
+<br>
+<Link to="toc" title="Table of Contents"/>
+
+---
+hideInToc: true
+class: compact-table
+---
+
+# Pi at a glance
+
+| | |
+| --- | --- |
+| **From** | Earendil |
+| **Start it** | `pi` |
+| **Install** (macOS, Linux) | `curl -fsSL https://pi.dev/install.sh \| sh` |
+| **Instructions file** | `AGENTS.md` |
+| **Permissions** | None by design; contain it and gate on the remote |
+
+<div class="mt-8 text-xl">
+
+[Open the Pi presentation →](https://taylorific.github.io/ai-coding-agents-training/pi/)
+
+</div>
 
 ---
 src: ./comparison/comparison-slides.md
----
-
----
-src: ./next-steps/next-steps-slides.md
 ---

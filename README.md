@@ -31,10 +31,46 @@ Edit the [slides.md](./slides.md) to see the changes.
 
 Learn more about Slidev at the [documentation](https://sli.dev/).
 
+# Presentations
+
+There's one presentation per agent, each specific to that agent, plus an index:
+
+| Presentation | Source | Online |
+| --- | --- | --- |
+| Index: one slide per agent, and all ten side by side | [slides.md](./slides.md) | [/](https://taylorific.github.io/ai-coding-agents-training/) |
+| Working with Claude Code | [claude-code.md](./claude-code.md) | [/claude-code/](https://taylorific.github.io/ai-coding-agents-training/claude-code/) |
+| Working with Codex | [codex.md](./codex.md) | [/codex/](https://taylorific.github.io/ai-coding-agents-training/codex/) |
+| Working with Gemini CLI | [gemini-cli.md](./gemini-cli.md) | [/gemini-cli/](https://taylorific.github.io/ai-coding-agents-training/gemini-cli/) |
+| Working with Antigravity | [antigravity.md](./antigravity.md) | [/antigravity/](https://taylorific.github.io/ai-coding-agents-training/antigravity/) |
+| Working with Cursor | [cursor.md](./cursor.md) | [/cursor/](https://taylorific.github.io/ai-coding-agents-training/cursor/) |
+| Working with GitHub Copilot CLI | [copilot.md](./copilot.md) | [/copilot/](https://taylorific.github.io/ai-coding-agents-training/copilot/) |
+| Working with Amp | [amp.md](./amp.md) | [/amp/](https://taylorific.github.io/ai-coding-agents-training/amp/) |
+| Working with Kiro | [kiro.md](./kiro.md) | [/kiro/](https://taylorific.github.io/ai-coding-agents-training/kiro/) |
+| Working with OpenCode | [opencode.md](./opencode.md) | [/opencode/](https://taylorific.github.io/ai-coding-agents-training/opencode/) |
+| Working with Pi | [pi.md](./pi.md) | [/pi/](https://taylorific.github.io/ai-coding-agents-training/pi/) |
+
+Every agent presentation has the same outline: how coding agents work, working
+with one day to day, agent trust as a system design problem, then that agent's
+own slides and its trust layers, and next steps.
+
+To present one agent's deck locally, name its file after the image:
+
+```bash
+docker run -it --rm \
+  --mount type=bind,source="$(pwd)",target="/slidev" \
+  --publish 3030:3030 \
+  docker.io/boxcutter/slidev claude-code.md --remote
+```
+
+Use `container run` the same way with Apple's container CLI. The deck files
+stay in the repository root so they share `style.css` and `components/`.
+
 # Sections
 
 Each section is its own file, so a deck can use any of them on its own or in
 any order. Each agent has two files: its own slides, and its trust slides.
+The sections other than an agent's own never name a specific agent, so every
+agent presentation can share them.
 
 | Directory | Covers |
 | --- | --- |
@@ -51,10 +87,10 @@ any order. Each agent has two files: its own slides, and its trust slides.
 | [kiro](./kiro/) | Kiro: install on macOS, Linux and Windows, getting started, daily use (`kiro-slides.md`); the trust layers in its own settings (`kiro-trust-slides.md`) |
 | [opencode](./opencode/) | OpenCode: install on macOS, Linux and Windows, getting started, daily use (`opencode-slides.md`); the trust layers in its own settings (`opencode-trust-slides.md`) |
 | [pi](./pi/) | Pi: install on macOS, Linux and Windows, getting started, daily use (`pi-slides.md`); the trust layers in its own settings (`pi-trust-slides.md`) |
-| [comparison](./comparison/comparison-slides.md) | All ten side by side, one shared `AGENTS.md` |
+| [comparison](./comparison/comparison-slides.md) | All ten side by side, one shared `AGENTS.md` (index only) |
 | [next-steps](./next-steps/next-steps-slides.md) | What to do next, and why the Swamp Training deck follows |
 
-[slides.md](./slides.md) pulls them in with `src:`:
+The deck files pull them in with `src:`:
 
 ```markdown
 ---

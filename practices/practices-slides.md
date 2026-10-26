@@ -78,7 +78,7 @@ hideInToc: true
 
 ```bash
 git worktree add ../myrepo-fix-login -b fix-login
-cd ../myrepo-fix-login && claude    # or codex, copilot, agent, ...
+cd ../myrepo-fix-login               # start your agent here
 ```
 
 ---

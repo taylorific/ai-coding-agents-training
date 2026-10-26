@@ -71,7 +71,7 @@ hideInToc: true
 
 # Layers 2, 3 and the gate
 
-**Layer 2**: `AGENTS.md` at the repo root (shared with other agents). Pull existing convention files in instead of copying them:
+**Layer 2**: `AGENTS.md` at the repo root. Pull existing convention files in instead of copying them:
 
 ```json
 { "instructions": ["CONTRIBUTING.md", "design/conventions.md"] }

@@ -67,7 +67,7 @@ hideInToc: true
 
 # Layers 2, 3 and the gate
 
-**Layer 2**: `AGENTS.md` at the repo root (shared with other agents), or `.github/copilot-instructions.md`. Path-specific conventions go in `.github/instructions/*.instructions.md` with `applyTo:`.
+**Layer 2**: `AGENTS.md` at the repo root, or `.github/copilot-instructions.md`. Path-specific conventions go in `.github/instructions/*.instructions.md` with `applyTo:`.
 
 **Layer 3**:
 

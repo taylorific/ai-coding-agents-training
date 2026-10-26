@@ -14,7 +14,7 @@ hideInToc: true
 
 # What you can do now
 
-- Install an agent and run one real task end to end: question, plan, change, tests, review
+- Run one real task end to end: question, plan, change, tests, review
 - Write a one-page `AGENTS.md` for a repository you work in
 - Set up Layer 1 for your agent: allow what `git checkout` can undo, ask about everything else
 - Put the gate where it can't be skipped: required reviews on your main branch
@@ -33,7 +33,7 @@ Everything in this deck makes **one agent session** safer and better. Three gaps
 | The instructions file makes the agent follow your process | Instructions are guidance; nothing enforces them |
 | "Done, I restarted the device" means it restarted | The agent's report is a claim, not a record |
 
-The **Swamp Training** deck picks up there: the agent drives typed, reusable automation instead of improvising each time, so the work is repeatable, enforced and recorded. It builds on everything here, and works with the agents you just met.
+The **Swamp Training** deck picks up there: the agent drives typed, reusable automation instead of improvising each time, so the work is repeatable, enforced and recorded. It builds on everything here, and works with the agent you just set up.
 
 **taylorific.github.io/swamp-training**
 

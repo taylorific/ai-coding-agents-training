@@ -71,7 +71,7 @@ hideInToc: true
 
 # Layers 2, 3 and the gate
 
-**Layer 2**: `AGENTS.md` at the repo root (shared with other agents), plus `.agents/rules/*.md` for rules that only apply to some files:
+**Layer 2**: `AGENTS.md` at the repo root, plus `.agents/rules/*.md` for rules that only apply to some files:
 
 ```markdown
 ---

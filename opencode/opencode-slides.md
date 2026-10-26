@@ -64,7 +64,7 @@ hideInToc: true
 Pull in more files with `instructions` in `opencode.json`:
 
 ```json
-{ "instructions": ["CONTRIBUTING.md", "docs/guidelines.md", ".cursor/rules/*.md"] }
+{ "instructions": ["CONTRIBUTING.md", "docs/guidelines.md", "docs/conventions/*.md"] }
 ```
 
 ---

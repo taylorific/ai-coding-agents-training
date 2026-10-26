@@ -64,7 +64,7 @@ hideInToc: true
 
 # Layers 2, 3 and the gate
 
-**Layer 2**: `AGENTS.md` at the repo root, shared with other agents. Use `globs:` frontmatter in nested files for rules that only apply to part of the tree:
+**Layer 2**: `AGENTS.md` at the repo root. Use `globs:` frontmatter in nested files for rules that only apply to part of the tree:
 
 ```markdown
 ---

@@ -30,7 +30,12 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: npm run build -- --base /ai-coding-agents-training/
+        run: |
+          # The index deck at the site root, then one presentation per agent
+          npx slidev build slides.md --base /ai-coding-agents-training/ --out dist
+          for deck in claude-code codex gemini-cli antigravity cursor copilot amp kiro opencode pi; do
+            npx slidev build "$deck.md" --base "/ai-coding-agents-training/$deck/" --out "dist/$deck"
+          done
 
       - uses: actions/configure-pages@v6
 

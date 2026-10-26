@@ -72,7 +72,7 @@ hideInToc: true
 
 # Layers 2, 3 and the gate
 
-**Layer 2**: `AGENTS.md` at the repo root (shared with other agents). Add `.cursor/rules/*.mdc` for rules that only apply to some files, using `globs`.
+**Layer 2**: `AGENTS.md` at the repo root. Add `.cursor/rules/*.mdc` for rules that only apply to some files, using `globs`.
 
 **Layer 3**: reference the design docs and stage checklists from `AGENTS.md`, or as an "Apply Intelligently" rule:
 

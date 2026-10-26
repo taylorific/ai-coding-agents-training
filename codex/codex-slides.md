@@ -59,7 +59,7 @@ hideInToc: true
 - `AGENTS.override.md` in a directory replaces that directory's `AGENTS.md`
 - Capped at 32 KiB by default (`project_doc_max_bytes`)
 
-`AGENTS.md` is an open convention that Codex, Cursor, Amp, OpenCode, Copilot, Pi and others read, which makes it the natural shared file.
+`AGENTS.md` is an open convention that many tools read, so one file can serve everyone on the team, whatever they run.
 
 <!--
 project_doc_fallback_filenames in config.toml lets Codex read other names too, such as CLAUDE.md, if a repo already has one.

@@ -21,7 +21,7 @@ hideInToc: true
 
 Both sign in with your Cursor account; the CLI also takes an API key (`CURSOR_API_KEY`) for scripts.
 
-The editor installs from cursor.com for macOS, Windows and Linux. The rest of this section is about the CLI, because it works the same way as the other agents here.
+The editor installs from cursor.com for macOS, Windows and Linux. The rest of this training uses the CLI, because it's the part you can script and automate.
 
 ---
 hideInToc: true

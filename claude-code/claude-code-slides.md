@@ -68,7 +68,7 @@ hideInToc: true
 
 - `/memory` opens the files for editing
 - `@path/to/file.md` inside CLAUDE.md imports another file
-- Want one file for every agent? Keep `AGENTS.md` and put `@AGENTS.md` in `CLAUDE.md`
+- Already have an `AGENTS.md`? Put `@AGENTS.md` in `CLAUDE.md` instead of copying it
 
 <!--
 Claude Code also keeps an automatic memory per project, where it saves things it learned across sessions. /memory shows that too.

@@ -18,7 +18,7 @@ hideInToc: true
 - Gemini CLI remains for **Gemini API keys**, **Vertex AI** and paid Code Assist licenses, and isn't tuned for the newest Gemini models
 - It's open source (Apache 2.0): github.com/google-gemini/gemini-cli
 
-If you're on a free or Google One account, use the Antigravity section instead. The ideas carry over.
+If you're on a free or Google One account, you'll be using Antigravity instead. The ideas carry over.
 
 <!--
 Verify this slide before presenting: Google has been moving quickly here. The notice is on the Gemini CLI README and docs (geminicli.com/docs).

@@ -21,7 +21,7 @@ hideInToc: true
 | **Checks** | Nothing; you copy and try | Reads errors and tries again |
 | **You** | Do the work | Direct and review the work |
 
-Claude Code, Codex, Cursor, Copilot CLI and the rest of this deck are all **coding agents**: a model in a loop with tools, running in your terminal or editor.
+The agent in this training is a **coding agent**: a model in a loop with tools, running in your terminal or editor.
 
 <!--
 The difference that matters is the loop. A chat assistant answers once. An agent keeps going until it thinks the task is done, using tools along the way.
@@ -75,11 +75,9 @@ hideInToc: true
 
 A Markdown file in the repository that every session reads at startup.
 
-| File | Read by |
-| --- | --- |
-| `AGENTS.md` | Codex, Cursor, Copilot CLI, Amp, Kiro, OpenCode, Pi, Antigravity |
-| `CLAUDE.md` | Claude Code (which can import `@AGENTS.md`) |
-| `GEMINI.md` | Gemini CLI (which can be pointed at `AGENTS.md`) |
+- `AGENTS.md` is the most common name; some agents have their own name for it
+- There's usually a global one for you, a project one you commit, and optional ones in subdirectories
+- The agent's own section shows exactly where it looks
 
 Good content: build and test commands, project layout, conventions, things that look wrong but aren't, what never to touch.
 
