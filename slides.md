@@ -60,7 +60,15 @@ src: ./practices/practices-slides.md
 ---
 
 ---
+src: ./trust/trust-slides.md
+---
+
+---
 src: ./claude-code/claude-code-slides.md
+---
+
+---
+src: ./claude-code/claude-code-trust-slides.md
 ---
 
 ---
@@ -68,9 +76,77 @@ src: ./codex/codex-slides.md
 ---
 
 ---
+src: ./codex/codex-trust-slides.md
+---
+
+---
 src: ./gemini-cli/gemini-cli-slides.md
 ---
 
 ---
+src: ./gemini-cli/gemini-cli-trust-slides.md
+---
+
+---
+src: ./antigravity/antigravity-slides.md
+---
+
+---
+src: ./antigravity/antigravity-trust-slides.md
+---
+
+---
+src: ./cursor/cursor-slides.md
+---
+
+---
+src: ./cursor/cursor-trust-slides.md
+---
+
+---
+src: ./copilot/copilot-slides.md
+---
+
+---
+src: ./copilot/copilot-trust-slides.md
+---
+
+---
+src: ./amp/amp-slides.md
+---
+
+---
+src: ./amp/amp-trust-slides.md
+---
+
+---
+src: ./kiro/kiro-slides.md
+---
+
+---
+src: ./kiro/kiro-trust-slides.md
+---
+
+---
+src: ./opencode/opencode-slides.md
+---
+
+---
+src: ./opencode/opencode-trust-slides.md
+---
+
+---
+src: ./pi/pi-slides.md
+---
+
+---
+src: ./pi/pi-trust-slides.md
+---
+
+---
 src: ./comparison/comparison-slides.md
+---
+
+---
+src: ./next-steps/next-steps-slides.md
 ---

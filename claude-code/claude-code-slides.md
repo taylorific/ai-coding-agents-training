@@ -10,27 +10,49 @@ layout: section
 
 ---
 hideInToc: true
+class: compact-table
 ---
 
-# Install and sign in
+# Install Claude Code
+
+| Platform | Command |
+| --- | --- |
+| macOS, Linux, WSL | `curl -fsSL https://claude.ai/install.sh \| bash` |
+| Windows PowerShell | `irm https://claude.ai/install.ps1 \| iex` |
+| Homebrew (macOS) | `brew install --cask claude-code` |
+| WinGet (Windows) | `winget install Anthropic.ClaudeCode` |
+| npm (Node.js 22+) | `npm install -g @anthropic-ai/claude-code` |
+
+- Windows: also install Git for Windows (for Git Bash); use WSL 2 if you want sandboxing
+- Needs a Pro, Max, Team or Enterprise plan, or an Anthropic Console account
+
+<!--
+Windows CMD: curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd
+The native installer updates itself; Homebrew, WinGet and npm installs don't.
+Claude Code is also a desktop app, VS Code and JetBrains extensions, and on the web at claude.ai/code.
+-->
+
+---
+hideInToc: true
+---
+
+# Getting started
 
 ```bash
-# Native installer (macOS, Linux, WSL)
-curl -fsSL https://claude.ai/install.sh | bash
+claude --version
+claude doctor                # check the install and settings
 
-# or Homebrew
-brew install --cask claude-code
-```
-
-```bash
 cd my-project
-claude            # first run opens a browser to sign in
-claude doctor     # check the install
+claude                       # first run opens a browser to sign in
 ```
 
-Sign in with a Claude subscription (Pro, Max, Team, Enterprise) or an Anthropic Console API key. Enterprises can also run it through Amazon Bedrock, Google Vertex AI or Microsoft Foundry.
+Then, inside the session:
 
-Also available as a desktop app, in VS Code and JetBrains, and on the web at claude.ai/code.
+1. `/init`: drafts a `CLAUDE.md` from your repository. Read it and trim it
+2. Ask a question first: *"Explain how requests flow through this service"*
+3. Switch to plan mode (`Shift+Tab`) and ask for a small change
+4. Approve the plan, let it edit, and have it run the tests
+5. Review with `git diff` before you commit
 
 ---
 hideInToc: true
@@ -44,7 +66,6 @@ hideInToc: true
 | `./CLAUDE.md` or `./.claude/CLAUDE.md` | The project; commit it |
 | `subdir/CLAUDE.md` | Read when Claude works in that directory |
 
-- `/init` drafts one from your repository
 - `/memory` opens the files for editing
 - `@path/to/file.md` inside CLAUDE.md imports another file
 - Want one file for every agent? Keep `AGENTS.md` and put `@AGENTS.md` in `CLAUDE.md`
@@ -71,13 +92,13 @@ class: compact-table
 | `dontAsk` | Denies anything not already allowed, without asking |
 | `bypassPermissions` | No checks. Disposable sandboxes only |
 
-`/permissions` shows and edits the allow and deny rules.
+`/permissions` shows and edits the allow, ask and deny rules.
 
 ---
 hideInToc: true
 ---
 
-# Settings and allow-lists
+# Settings
 
 | File | Scope |
 | --- | --- |
@@ -88,13 +109,14 @@ hideInToc: true
 ```json
 {
   "permissions": {
-    "allow": ["Bash(npm run test:*)", "Bash(git diff:*)"],
-    "deny": ["Read(./.env)", "Bash(git push:*)"]
+    "allow": ["Bash(npm run test *)", "Bash(git diff *)"],
+    "ask": ["Bash(git push *)"],
+    "deny": ["Read(./.env)"]
   }
 }
 ```
 
-Allow narrow command patterns, and deny reading secret files outright.
+Rules are checked deny first, then ask, then allow.
 
 ---
 hideInToc: true
@@ -107,32 +129,14 @@ class: compact-table
 | --- | --- |
 | `@src/app.ts` | Adds a file to the prompt |
 | `!npm test` | Runs a shell command yourself; output goes into context |
-| `Esc` | Interrupts Claude |
-| `Esc` `Esc` | Rewinds to an earlier message, and optionally the code |
-| `/clear` | Starts a fresh conversation |
-| `/compact` | Summarizes the conversation to free context |
+| `Esc` / `Esc` `Esc` | Interrupts / rewinds to an earlier message, optionally the code |
+| `/clear`, `/compact` | Fresh conversation / summarize to free context |
 | `/model`, `/effort` | Changes model or reasoning effort |
 | `/review` | Reviews your current changes |
+| `/mcp`, `/agents`, `/hooks` | MCP servers, subagents, hooks |
 | `claude -c` / `claude -r` | Continues the last session / picks one to resume |
 
----
-hideInToc: true
----
-
-# Extending Claude Code
-
-| Mechanism | Where |
-| --- | --- |
-| MCP servers | `claude mcp add <name> -- <command>`; project servers in `.mcp.json` |
-| Skills | `.claude/skills/<name>/SKILL.md`, loaded when relevant or run as `/<name>` |
-| Subagents | `.claude/agents/<name>.md`; manage with `/agents` |
-| Hooks | `hooks` in settings.json: scripts on `PreToolUse`, `PostToolUse`, `Stop`, ... |
-| Plugins | Bundles of the above: `/plugin` to browse and install |
-
-```bash
-claude mcp add github -- npx -y @modelcontextprotocol/server-github
-claude mcp list
-```
+Extend it with MCP (`claude mcp add`), skills (`.claude/skills/<name>/SKILL.md`), subagents (`.claude/agents/`), hooks and plugins (`/plugin`).
 
 ---
 hideInToc: true
@@ -145,12 +149,12 @@ hideInToc: true
 claude -p "Summarize what changed on this branch" --output-format json
 
 # Only the tools you allow
-claude -p "Fix the lint errors" --allowedTools "Edit" "Bash(npm run lint:*)"
+claude -p "Fix the lint errors" --allowedTools "Edit" "Bash(npm run lint *)"
 
 # Its own git worktree, so it doesn't collide with your checkout
 claude -w fix-login
 ```
 
 - `--bg` starts a session in the background; `claude agents` lists them
-- `claude --cloud "<task>"` runs it in a cloud sandbox instead of on your machine
-- The Agent SDK and the GitHub Action run the same agent from your own code and CI
+- `claude --cloud "<task>"` runs it in a cloud sandbox
+- The Agent SDK and the GitHub Action run the same agent from your code and CI

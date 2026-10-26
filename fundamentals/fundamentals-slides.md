@@ -21,7 +21,7 @@ hideInToc: true
 | **Checks** | Nothing; you copy and try | Reads errors and tries again |
 | **You** | Do the work | Direct and review the work |
 
-Claude Code, Codex and Gemini CLI are all **coding agents**: a model in a loop with tools, running in your terminal.
+Claude Code, Codex, Cursor, Copilot CLI and the rest of this deck are all **coding agents**: a model in a loop with tools, running in your terminal or editor.
 
 <!--
 The difference that matters is the loop. A chat assistant answers once. An agent keeps going until it thinks the task is done, using tools along the way.
@@ -75,15 +75,15 @@ hideInToc: true
 
 A Markdown file in the repository that every session reads at startup.
 
-| Agent | File | Global file |
-| --- | --- | --- |
-| Claude Code | `CLAUDE.md` | `~/.claude/CLAUDE.md` |
-| Codex | `AGENTS.md` | `~/.codex/AGENTS.md` |
-| Gemini CLI | `GEMINI.md` | `~/.gemini/GEMINI.md` |
+| File | Read by |
+| --- | --- |
+| `AGENTS.md` | Codex, Cursor, Copilot CLI, Amp, Kiro, OpenCode, Pi, Antigravity |
+| `CLAUDE.md` | Claude Code (which can import `@AGENTS.md`) |
+| `GEMINI.md` | Gemini CLI (which can be pointed at `AGENTS.md`) |
 
 Good content: build and test commands, project layout, conventions, things that look wrong but aren't, what never to touch.
 
-`/init` in any of the three writes a first draft from your repository.
+Most agents have an `/init` command that writes a first draft from your repository.
 
 <!--
 Keep it short and specific. It's sent with every request, so every line costs context, and vague advice ("write clean code") does nothing.
@@ -112,7 +112,7 @@ hideInToc: true
 
 # Permissions and sandboxes
 
-All three agents ask before risky actions, and all three let you loosen that.
+Most agents ask before risky actions, and all of them let you loosen that.
 
 | Level | What happens |
 | --- | --- |
@@ -142,4 +142,4 @@ hideInToc: true
 | **Hooks** | Your scripts on agent events: block a command, run a formatter |
 | **Custom commands** | Saved prompts you run with `/name` |
 
-All three agents support MCP, and the rest are converging. The details differ, so check the per-agent sections.
+Every agent in this deck supports MCP, and most have skills, subagents and hooks too. The details differ, so check the per-agent sections.

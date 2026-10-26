@@ -14,11 +14,11 @@ hideInToc: true
 
 # Gemini CLI or Antigravity CLI?
 
-- Since June 18, 2026, Google's free tier and Google One plans use **Antigravity CLI** instead of Gemini CLI
-- Gemini CLI remains for **Gemini API keys**, **Vertex AI** and paid Code Assist licenses
+- Since June 18, 2026, Google's free tier and Google One plans use **Antigravity CLI** (`agy`) instead of Gemini CLI
+- Gemini CLI remains for **Gemini API keys**, **Vertex AI** and paid Code Assist licenses, and isn't tuned for the newest Gemini models
 - It's open source (Apache 2.0): github.com/google-gemini/gemini-cli
 
-The ideas in this section (context files, approval modes, sandboxing, MCP) carry over. Check which one your account gets before the class.
+If you're on a free or Google One account, use the Antigravity section instead. The ideas carry over.
 
 <!--
 Verify this slide before presenting: Google has been moving quickly here. The notice is on the Gemini CLI README and docs (geminicli.com/docs).
@@ -29,15 +29,14 @@ hideInToc: true
 class: compact-table
 ---
 
-# Install and sign in
+# Install Gemini CLI
 
-```bash
-npm install -g @google/gemini-cli
-# or
-brew install gemini-cli
-# or run it without installing
-npx @google/gemini-cli
-```
+| Platform | Command |
+| --- | --- |
+| npm (Node.js 20+; macOS, Linux, Windows) | `npm install -g @google/gemini-cli` |
+| Homebrew (macOS, Linux) | `brew install gemini-cli` |
+| MacPorts (macOS) | `sudo port install gemini-cli` |
+| Try without installing | `npx @google/gemini-cli` |
 
 | Sign-in | Set up |
 | --- | --- |
@@ -45,7 +44,30 @@ npx @google/gemini-cli
 | Gemini API key | `export GEMINI_API_KEY=...` |
 | Vertex AI | `gcloud auth application-default login`, plus `GOOGLE_CLOUD_PROJECT` and `GOOGLE_CLOUD_LOCATION` |
 
-Environment variables can also live in `~/.gemini/.env` or the project's `.gemini/.env`.
+<!--
+On Windows, run it from PowerShell (Windows 11 24H2 or later recommended).
+-->
+
+---
+hideInToc: true
+---
+
+# Getting started
+
+```bash
+gemini --version
+
+cd my-project
+gemini                       # pick a sign-in method on first run
+```
+
+Then, inside the session:
+
+1. `/init`: drafts a `GEMINI.md` from your repository. Read it and trim it
+2. Ask a question first, pointing at files with `@`: *"Explain @src/server.ts"*
+3. `/plan` and ask for a small change; read the plan
+4. Let it implement in the default mode, approving each edit
+5. `/restore` undoes a change if checkpointing is on; review with `git diff`
 
 ---
 hideInToc: true
@@ -56,9 +78,8 @@ hideInToc: true
 - Global: `~/.gemini/GEMINI.md`
 - Project: `GEMINI.md` in the workspace and its parent directories
 - Subdirectories: picked up when a tool touches files there
-- All found files are joined and sent with every prompt
 - `@./docs/conventions.md` inside a file imports another one
-- `/init` drafts one; `/memory show` displays what's loaded
+- `/memory show` displays what's loaded
 
 Read `AGENTS.md` instead, or as well, from `settings.json`:
 
@@ -86,7 +107,7 @@ Sandbox the tools with `-s` / `--sandbox`, or `"tools": { "sandbox": "docker" }`
 - Docker or Podman: `ghcr.io/google/gemini-cli` image; network off by default
 - Linux: gVisor (`runsc`) and LXC also supported
 
-`security.disableYoloMode` lets an admin turn YOLO off entirely.
+Per-command rules live in the **policy engine**: `~/.gemini/policies/*.toml`.
 
 ---
 hideInToc: true
@@ -126,14 +147,12 @@ class: compact-table
 | `@src/` | Adds a file or directory to the prompt |
 | `!git status` | Runs a shell command; `!` alone toggles shell mode |
 | `/memory` | Shows or reloads the context files |
-| `/tools`, `/mcp` | Lists built-in and MCP tools |
+| `/tools`, `/mcp`, `/skills` | Built-in tools, MCP tools, skills |
 | `/chat save <tag>`, `/resume` | Saves and resumes conversations |
 | `/compress` | Summarizes the conversation to free context |
 | `/restore` | Undoes file changes back to a checkpoint |
 | `Esc` `Esc` | Rewinds the conversation |
 | `/stats` | Token use and quota |
-
-With checkpointing on, every file-changing tool call is snapshotted first, so `/restore` can undo it.
 
 ---
 hideInToc: true
