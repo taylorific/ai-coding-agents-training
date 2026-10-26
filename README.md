@@ -49,6 +49,9 @@ There's one presentation per agent, each specific to that agent, plus an index:
 | Working with OpenCode | [opencode.md](./opencode.md) | [/opencode/](https://taylorific.github.io/ai-coding-agents-training/opencode/) |
 | Working with Pi | [pi.md](./pi.md) | [/pi/](https://taylorific.github.io/ai-coding-agents-training/pi/) |
 
+Each agent's directory has a README with its own commands to present the deck,
+and how to install and start the agent.
+
 Every agent presentation has the same outline: how coding agents work, working
 with one day to day, agent trust as a system design problem, then that agent's
 own slides and its trust layers, and next steps.
