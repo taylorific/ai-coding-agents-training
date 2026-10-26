@@ -52,11 +52,25 @@ routeAlias: toc
 <Toc columns="2"/>
 
 ---
-layout: section
+src: ./fundamentals/fundamentals-slides.md
 ---
 
-# Getting started
+---
+src: ./practices/practices-slides.md
+---
 
-<br>
-<br>
-<Link to="toc" title="Table of Contents"/>
+---
+src: ./claude-code/claude-code-slides.md
+---
+
+---
+src: ./codex/codex-slides.md
+---
+
+---
+src: ./gemini-cli/gemini-cli-slides.md
+---
+
+---
+src: ./comparison/comparison-slides.md
+---

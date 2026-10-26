@@ -15,6 +15,31 @@ Edit the [slides.md](./slides.md) to see the changes.
 
 Learn more about Slidev at the [documentation](https://sli.dev/).
 
+# Sections
+
+Each section is its own file, so a deck can use any of them on its own or in
+any order:
+
+| Directory | Covers |
+| --- | --- |
+| [fundamentals](./fundamentals/fundamentals-slides.md) | The agent loop, context, instruction files, permissions, extending an agent |
+| [practices](./practices/practices-slides.md) | Writing tasks, plan then build, verification, git, review, security |
+| [claude-code](./claude-code/claude-code-slides.md) | Claude Code |
+| [codex](./codex/codex-slides.md) | OpenAI Codex CLI |
+| [gemini-cli](./gemini-cli/gemini-cli-slides.md) | Google Gemini CLI |
+| [comparison](./comparison/comparison-slides.md) | The three side by side, one shared `AGENTS.md` |
+
+[slides.md](./slides.md) pulls them in with `src:`:
+
+```markdown
+---
+src: ./claude-code/claude-code-slides.md
+---
+```
+
+Each section slide links back to the table of contents, so a deck that imports
+one needs a slide with `routeAlias: toc`.
+
 # Update dependencies
 
 To see what is out of date:

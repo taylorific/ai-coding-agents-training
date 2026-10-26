@@ -1,0 +1,79 @@
+/* Project-level overrides. Slidev auto-imports ./style.css after the theme's
+   own styles, so plain rules here win at equal specificity. */
+
+/* slidev-theme-seriph styles the first paragraph after an h1 as a muted
+   subtitle (styles/layouts.css: `h1 + p { @apply -mt-2 opacity-50 mb-4 }`).
+   We write real body copy there, so keep the spacing and drop the fade. */
+.slidev-layout h1 + p {
+  opacity: 1;
+}
+
+/* Titles: the theme uses one blue-gray (#5d8392) for both color schemes,
+   which is below 4.5:1 contrast on white and dim on the dark background.
+   Same hue, darker in light mode (6.7:1) and lighter in dark mode (8.5:1). */
+:root {
+  --slidev-theme-primary: #3f6170;
+}
+html.dark {
+  --slidev-theme-primary: #8fb4c3;
+}
+
+/* Code: vitesse-light renders comments and punctuation too faint to read on a
+   projector (2.2:1 and 2.6:1). Keep the hues, raise contrast to 4.5:1 or more. */
+html:not(.dark) .shiki span[style*="--shiki-light: #A0ADA0"] { color: #5f6d5f !important; }
+html:not(.dark) .shiki span[style*="--shiki-light: #999999"] { color: #6e6e6e !important; }
+html:not(.dark) .shiki span[style*="--shiki-light: #B5695977"] { color: #9a4f40 !important; }
+html:not(.dark) .shiki span[style*="--shiki-light: #99841877"] { color: #7a6912 !important; }
+html.dark .shiki span[style*="--shiki-dark: #758575DD"] { color: #8d9d8d !important; }
+html.dark .shiki span[style*="--shiki-dark: #666666"] { color: #8c8c8c !important; }
+html:not(.dark) .shiki span[style*="--shiki-light: #998418;"] { color: #7a6912 !important; }
+html:not(.dark) .shiki span[style*="--shiki-light: #B07D48"] { color: #8c5f30 !important; }
+html:not(.dark) .shiki span[style*="--shiki-light: #B56959;"] { color: #9a4f40 !important; }
+html.dark .shiki span[style*="--shiki-dark: #C98A7D77"] { color: #c98a7d !important; }
+
+/* Tables: Slidev's default cell padding (py-3) makes single-line rows very tall,
+   which pushed many table slides past the bottom edge. */
+.slidev-layout td,
+.slidev-layout th {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+/* Code blocks: in dark mode the code background (#1b1b1b) is nearly the same as
+   the slide (#121212), so blocks had no visible edge. Lighten it and outline blocks
+   in both color schemes. */
+html.dark {
+  --slidev-code-background: #24282c;
+}
+.slidev-layout pre.slidev-code {
+  border: 1px solid #b0b0b0;
+}
+html.dark .slidev-layout pre.slidev-code {
+  border-color: #6b7883;
+}
+
+/* Table rules: the default divider (20% gray) almost disappears on the dark
+   background. Use a solid, brighter rule in dark mode only. */
+html.dark .slidev-layout tr {
+  border-bottom-color: #4a5057;
+}
+
+/* Blockquotes (example prompts): the default 1px rule barely shows, especially
+   in dark mode. A 4px title-colored bar marks them, plus an outline in dark
+   mode to match the code blocks. */
+.slidev-layout blockquote {
+  border-left: 4px solid var(--slidev-theme-primary);
+  padding: 0.5rem 0.75rem;
+}
+html.dark .slidev-layout blockquote {
+  border-top: 1px solid #6b7883;
+  border-right: 1px solid #6b7883;
+  border-bottom: 1px solid #6b7883;
+}
+
+/* Dense reference tables: tighter rows. */
+.compact-table td,
+.compact-table th {
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+}
