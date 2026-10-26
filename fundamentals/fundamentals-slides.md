@@ -1,5 +1,6 @@
 ---
 layout: section
+level: 2
 ---
 
 # How coding agents work
@@ -10,6 +11,7 @@ layout: section
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Chat assistant vs. coding agent
@@ -29,6 +31,7 @@ The difference that matters is the loop. A chat assistant answers once. An agent
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # The agent loop
@@ -52,6 +55,7 @@ This is why verification matters: the agent's "done" is a judgment, not a guaran
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Context is the working memory
@@ -69,6 +73,7 @@ hideInToc: true
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Instruction files
@@ -89,6 +94,7 @@ Keep it short and specific. It's sent with every request, so every line costs co
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Instructions are guidance, not guarantees
@@ -106,6 +112,7 @@ For anything that must hold every time, use the agent's **controls** instead:
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Permissions and sandboxes
@@ -128,6 +135,7 @@ The "bypass" modes have scary names on purpose: --dangerously-skip-permissions, 
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Extending an agent

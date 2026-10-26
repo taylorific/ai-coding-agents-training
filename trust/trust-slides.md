@@ -1,5 +1,6 @@
 ---
 layout: section
+level: 2
 ---
 
 # Agent trust is a system design problem
@@ -10,6 +11,7 @@ layout: section
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # The approval-fatigue trap
@@ -29,6 +31,7 @@ His examples use one agent's settings, but the model is agent-neutral. The next 
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Three layers of trust
@@ -48,6 +51,7 @@ flowchart LR
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # What each layer controls
@@ -60,6 +64,7 @@ hideInToc: true
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Layer 1: allow or ask?
@@ -85,6 +90,7 @@ The gh pr create prompt exists because a teammate's agent opened a PR nobody app
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Layer 2: how it writes code
@@ -97,6 +103,7 @@ Conventions, with the reason:
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Layer 3: how it thinks
@@ -111,6 +118,7 @@ hideInToc: true
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # One gate, at publication
@@ -128,6 +136,7 @@ flowchart LR
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Where to start

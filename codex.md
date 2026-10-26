@@ -49,7 +49,17 @@ routeAlias: toc
 
 # Table of Contents
 
-<Toc columns="2"/>
+<Toc/>
+
+---
+layout: section
+---
+
+# Coding agents
+
+<br>
+<br>
+<Link to="toc" title="Table of Contents"/>
 
 ---
 src: ./fundamentals/fundamentals-slides.md
@@ -62,6 +72,16 @@ src: ./practices/practices-slides.md
 ---
 src: ./trust/trust-slides.md
 ---
+
+---
+layout: section
+---
+
+# Codex
+
+<br>
+<br>
+<Link to="toc" title="Table of Contents"/>
 
 ---
 src: ./codex/codex-slides.md

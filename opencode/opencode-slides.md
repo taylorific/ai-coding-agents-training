@@ -1,8 +1,9 @@
 ---
 layout: section
+level: 2
 ---
 
-# OpenCode
+# Getting started with OpenCode
 
 <br>
 <br>
@@ -10,6 +11,7 @@ layout: section
 
 ---
 hideInToc: true
+level: 2
 class: compact-table
 ---
 
@@ -32,6 +34,7 @@ OpenCode 1 and 2 both install as "opencode" and can't sit side by side. Plain `b
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Getting started
@@ -51,6 +54,7 @@ Then, inside the session:
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # AGENTS.md
@@ -69,6 +73,7 @@ Pull in more files with `instructions` in `opencode.json`:
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Agents and permissions
@@ -92,6 +97,7 @@ Values are `allow`, `ask` or `deny`; for patterns, **the last matching rule wins
 
 ---
 hideInToc: true
+level: 2
 class: compact-table
 ---
 

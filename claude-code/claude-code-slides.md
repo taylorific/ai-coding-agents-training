@@ -1,8 +1,9 @@
 ---
 layout: section
+level: 2
 ---
 
-# Claude Code
+# Getting started with Claude Code
 
 <br>
 <br>
@@ -10,6 +11,7 @@ layout: section
 
 ---
 hideInToc: true
+level: 2
 class: compact-table
 ---
 
@@ -34,6 +36,7 @@ Claude Code is also a desktop app, VS Code and JetBrains extensions, and on the 
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Getting started
@@ -56,6 +59,7 @@ Then, inside the session:
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # CLAUDE.md
@@ -76,6 +80,7 @@ Claude Code also keeps an automatic memory per project, where it saves things it
 
 ---
 hideInToc: true
+level: 2
 class: compact-table
 ---
 
@@ -96,6 +101,7 @@ class: compact-table
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Settings
@@ -120,6 +126,7 @@ Rules are checked deny first, then ask, then allow.
 
 ---
 hideInToc: true
+level: 2
 class: compact-table
 ---
 
@@ -140,6 +147,7 @@ Extend it with MCP (`claude mcp add`), skills (`.claude/skills/<name>/SKILL.md`)
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Scripting and parallel work

@@ -1,8 +1,9 @@
 ---
 layout: section
+level: 2
 ---
 
-# Codex
+# Getting started with Codex
 
 <br>
 <br>
@@ -10,6 +11,7 @@ layout: section
 
 ---
 hideInToc: true
+level: 2
 class: compact-table
 ---
 
@@ -28,6 +30,7 @@ class: compact-table
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Getting started
@@ -49,6 +52,7 @@ Then, inside the session:
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # AGENTS.md
@@ -67,6 +71,7 @@ project_doc_fallback_filenames in config.toml lets Codex read other names too, s
 
 ---
 hideInToc: true
+level: 2
 class: compact-table
 ---
 
@@ -89,6 +94,7 @@ Git repositories default to `workspace-write` with `on-request`. `--yolo` turns 
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # config.toml
@@ -113,6 +119,7 @@ args = ["-y", "@upstash/context7-mcp"]
 
 ---
 hideInToc: true
+level: 2
 class: compact-table
 ---
 
@@ -133,6 +140,7 @@ class: compact-table
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Scripting with codex exec

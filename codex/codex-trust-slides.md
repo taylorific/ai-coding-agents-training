@@ -1,5 +1,6 @@
 ---
 layout: section
+level: 2
 ---
 
 # Codex: trust layers
@@ -10,6 +11,7 @@ layout: section
 
 ---
 hideInToc: true
+level: 2
 class: compact-table
 ---
 
@@ -26,6 +28,7 @@ Rule of thumb: undoable with `git checkout` → **allow**. Leaves the working tr
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Layer 1, part 1: the sandbox already draws the line
@@ -45,6 +48,7 @@ network_access = false               # remotes, PRs and clouds need approval
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Layer 1, part 2: rules for what the sandbox can't see
@@ -72,6 +76,7 @@ Rules are documented as experimental. When several rules match, the most restric
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Layers 2, 3 and the gate

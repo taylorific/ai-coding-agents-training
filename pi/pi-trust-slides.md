@@ -1,5 +1,6 @@
 ---
 layout: section
+level: 2
 ---
 
 # Pi: trust layers
@@ -10,6 +11,7 @@ layout: section
 
 ---
 hideInToc: true
+level: 2
 class: compact-table
 ---
 
@@ -26,6 +28,7 @@ Rule of thumb: undoable with `git checkout` → **allow**. Leaves the working tr
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Layer 1 is yours to build
@@ -43,6 +46,7 @@ The example extensions (permission-gate.ts, protected-paths.ts) are in the earen
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Why it's built this way
@@ -59,6 +63,7 @@ hideInToc: true
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Layers 2, 3 and the gate

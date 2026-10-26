@@ -1,5 +1,6 @@
 ---
 layout: section
+level: 2
 ---
 
 # Working with an agent day to day
@@ -10,6 +11,7 @@ layout: section
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Write the task like a ticket
@@ -33,6 +35,7 @@ The agent can't ask the hallway what you meant. Everything you'd tell a new team
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Plan, then build
@@ -50,6 +53,7 @@ Most wasted agent time is a wrong assumption made in the first minute and built 
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Give it a way to check its work
@@ -67,6 +71,7 @@ An agent that can see its own failures fixes them. One that can't guesses.
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Use git as your safety net
@@ -83,6 +88,7 @@ cd ../myrepo-fix-login               # start your agent here
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Review like it's a colleague's PR
@@ -101,6 +107,7 @@ Agents are eager to finish. When a test is hard to pass, weakening the test is a
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Security habits
@@ -113,6 +120,7 @@ hideInToc: true
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # When it goes wrong

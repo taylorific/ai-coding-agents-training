@@ -10,6 +10,7 @@ layout: section
 
 ---
 hideInToc: true
+level: 2
 class: text-sm compact-table
 ---
 
@@ -25,6 +26,7 @@ class: text-sm compact-table
 
 ---
 hideInToc: true
+level: 2
 class: text-sm compact-table
 ---
 
@@ -42,6 +44,7 @@ class: text-sm compact-table
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # One instructions file for every agent
@@ -60,6 +63,7 @@ A team can then use whichever agent each person prefers, with the same project k
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # How each one handles "ask"
@@ -75,6 +79,7 @@ Whatever the agent, the strongest gate is the one it can't reach: protected bran
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Picking one

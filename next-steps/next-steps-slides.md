@@ -10,6 +10,7 @@ layout: section
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # What you can do now
@@ -21,6 +22,7 @@ hideInToc: true
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Next: Swamp Training

@@ -1,8 +1,9 @@
 ---
 layout: section
+level: 2
 ---
 
-# GitHub Copilot CLI
+# Getting started with GitHub Copilot CLI
 
 <br>
 <br>
@@ -10,6 +11,7 @@ layout: section
 
 ---
 hideInToc: true
+level: 2
 class: compact-table
 ---
 
@@ -29,6 +31,7 @@ class: compact-table
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Getting started
@@ -50,6 +53,7 @@ Then, inside the session:
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Custom instructions
@@ -67,6 +71,7 @@ hideInToc: true
 
 ---
 hideInToc: true
+level: 2
 class: compact-table
 ---
 
@@ -88,6 +93,7 @@ On first run in a folder: trust it for this session, remember it, or leave.
 
 ---
 hideInToc: true
+level: 2
 class: compact-table
 ---
 

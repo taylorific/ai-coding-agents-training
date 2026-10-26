@@ -1,8 +1,9 @@
 ---
 layout: section
+level: 2
 ---
 
-# Antigravity
+# Getting started with Antigravity
 
 <br>
 <br>
@@ -10,6 +11,7 @@ layout: section
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # What Antigravity is
@@ -26,6 +28,7 @@ Sign in with a personal Google account (free, AI Plus, Pro or Ultra plans), a bu
 
 ---
 hideInToc: true
+level: 2
 class: compact-table
 ---
 
@@ -43,6 +46,7 @@ class: compact-table
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Getting started
@@ -66,6 +70,7 @@ In the IDE: open a folder, sign in, and open the Agent Manager with `Cmd+E` / `C
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Rules files
@@ -82,6 +87,7 @@ hideInToc: true
 
 ---
 hideInToc: true
+level: 2
 class: compact-table
 ---
 
@@ -107,6 +113,7 @@ Deny beats ask beats allow. `--dangerously-skip-permissions` turns prompts off: 
 
 ---
 hideInToc: true
+level: 2
 class: compact-table
 ---
 

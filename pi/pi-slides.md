@@ -1,8 +1,9 @@
 ---
 layout: section
+level: 2
 ---
 
-# Pi
+# Getting started with Pi
 
 <br>
 <br>
@@ -10,6 +11,7 @@ layout: section
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # What Pi is
@@ -25,6 +27,7 @@ Good for people who want to see and control exactly what their agent does.
 
 ---
 hideInToc: true
+level: 2
 class: compact-table
 ---
 
@@ -42,6 +45,7 @@ class: compact-table
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Getting started
@@ -65,6 +69,7 @@ Pi doesn't ask before acting. Start it in a git repository you can reset.
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Instructions and sessions
@@ -82,6 +87,7 @@ hideInToc: true
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Scripting and extending

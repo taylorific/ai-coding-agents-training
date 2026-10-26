@@ -1,8 +1,9 @@
 ---
 layout: section
+level: 2
 ---
 
-# Gemini CLI
+# Getting started with Gemini CLI
 
 <br>
 <br>
@@ -10,6 +11,7 @@ layout: section
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Gemini CLI or Antigravity CLI?
@@ -26,6 +28,7 @@ Verify this slide before presenting: Google has been moving quickly here. The no
 
 ---
 hideInToc: true
+level: 2
 class: compact-table
 ---
 
@@ -50,6 +53,7 @@ On Windows, run it from PowerShell (Windows 11 24H2 or later recommended).
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Getting started
@@ -71,6 +75,7 @@ Then, inside the session:
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # GEMINI.md
@@ -89,6 +94,7 @@ Read `AGENTS.md` instead, or as well, from `settings.json`:
 
 ---
 hideInToc: true
+level: 2
 class: compact-table
 ---
 
@@ -111,6 +117,7 @@ Per-command rules live in the **policy engine**: `~/.gemini/policies/*.toml`.
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # settings.json
@@ -137,6 +144,7 @@ hideInToc: true
 
 ---
 hideInToc: true
+level: 2
 class: compact-table
 ---
 
@@ -156,6 +164,7 @@ class: compact-table
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Scripting

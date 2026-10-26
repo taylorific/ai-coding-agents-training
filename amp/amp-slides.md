@@ -1,8 +1,9 @@
 ---
 layout: section
+level: 2
 ---
 
-# Amp
+# Getting started with Amp
 
 <br>
 <br>
@@ -10,6 +11,7 @@ layout: section
 
 ---
 hideInToc: true
+level: 2
 class: compact-table
 ---
 
@@ -27,6 +29,7 @@ class: compact-table
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Getting started
@@ -50,6 +53,7 @@ Pick how hard Amp works per task with its mode dial: `low`, `medium`, `high`, `u
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # AGENTS.md
@@ -64,6 +68,7 @@ hideInToc: true
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Settings and permissions
@@ -86,6 +91,7 @@ hideInToc: true
 
 ---
 hideInToc: true
+level: 2
 class: compact-table
 ---
 

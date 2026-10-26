@@ -49,7 +49,7 @@ routeAlias: toc
 
 # Table of Contents
 
-<Toc columns="2" maxDepth="1"/>
+<Toc/>
 
 ---
 hideInToc: true
@@ -70,6 +70,17 @@ Pick yours from the table of contents, or read on for a one-slide summary of eac
 layout: section
 ---
 
+# Agents
+
+<br>
+<br>
+<Link to="toc" title="Table of Contents"/>
+
+---
+layout: section
+level: 2
+---
+
 # Claude Code
 
 <br>
@@ -78,6 +89,7 @@ layout: section
 
 ---
 hideInToc: true
+level: 2
 class: compact-table
 ---
 
@@ -99,6 +111,7 @@ class: compact-table
 
 ---
 layout: section
+level: 2
 ---
 
 # Codex
@@ -109,6 +122,7 @@ layout: section
 
 ---
 hideInToc: true
+level: 2
 class: compact-table
 ---
 
@@ -130,6 +144,7 @@ class: compact-table
 
 ---
 layout: section
+level: 2
 ---
 
 # Gemini CLI
@@ -140,6 +155,7 @@ layout: section
 
 ---
 hideInToc: true
+level: 2
 class: compact-table
 ---
 
@@ -161,6 +177,7 @@ class: compact-table
 
 ---
 layout: section
+level: 2
 ---
 
 # Antigravity
@@ -171,6 +188,7 @@ layout: section
 
 ---
 hideInToc: true
+level: 2
 class: compact-table
 ---
 
@@ -192,6 +210,7 @@ class: compact-table
 
 ---
 layout: section
+level: 2
 ---
 
 # Cursor
@@ -202,6 +221,7 @@ layout: section
 
 ---
 hideInToc: true
+level: 2
 class: compact-table
 ---
 
@@ -223,6 +243,7 @@ class: compact-table
 
 ---
 layout: section
+level: 2
 ---
 
 # GitHub Copilot CLI
@@ -233,6 +254,7 @@ layout: section
 
 ---
 hideInToc: true
+level: 2
 class: compact-table
 ---
 
@@ -254,6 +276,7 @@ class: compact-table
 
 ---
 layout: section
+level: 2
 ---
 
 # Amp
@@ -264,6 +287,7 @@ layout: section
 
 ---
 hideInToc: true
+level: 2
 class: compact-table
 ---
 
@@ -285,6 +309,7 @@ class: compact-table
 
 ---
 layout: section
+level: 2
 ---
 
 # Kiro
@@ -295,6 +320,7 @@ layout: section
 
 ---
 hideInToc: true
+level: 2
 class: compact-table
 ---
 
@@ -316,6 +342,7 @@ class: compact-table
 
 ---
 layout: section
+level: 2
 ---
 
 # OpenCode
@@ -326,6 +353,7 @@ layout: section
 
 ---
 hideInToc: true
+level: 2
 class: compact-table
 ---
 
@@ -347,6 +375,7 @@ class: compact-table
 
 ---
 layout: section
+level: 2
 ---
 
 # Pi
@@ -357,6 +386,7 @@ layout: section
 
 ---
 hideInToc: true
+level: 2
 class: compact-table
 ---
 

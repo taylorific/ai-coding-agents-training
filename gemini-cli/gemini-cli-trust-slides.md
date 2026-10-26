@@ -1,5 +1,6 @@
 ---
 layout: section
+level: 2
 ---
 
 # Gemini CLI: trust layers
@@ -10,6 +11,7 @@ layout: section
 
 ---
 hideInToc: true
+level: 2
 class: compact-table
 ---
 
@@ -26,6 +28,7 @@ Rule of thumb: undoable with `git checkout` → **allow**. Leaves the working tr
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Layer 1: ~/.gemini/policies/trust.toml
@@ -52,6 +55,7 @@ priority = 100
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Why it's built this way
@@ -68,6 +72,7 @@ hideInToc: true
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Layers 2, 3 and the gate

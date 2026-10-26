@@ -52,9 +52,10 @@ There's one presentation per agent, each specific to that agent, plus an index:
 Each agent's directory has a README with its own commands to present the deck,
 and how to install and start the agent.
 
-Every agent presentation has the same outline: how coding agents work, working
-with one day to day, agent trust as a system design problem, then that agent's
-own slides and its trust layers, and next steps.
+Every agent presentation has the same outline, in three groups: coding agents
+(how they work, working with one day to day, agent trust as a system design
+problem), then the agent itself (getting started, and its trust layers), and
+next steps.
 
 To present one agent's deck locally, name its file after the image:
 
@@ -103,6 +104,17 @@ src: ./claude-code/claude-code-slides.md
 
 Each section slide links back to the table of contents, so a deck that imports
 one needs a slide with `routeAlias: toc`.
+
+## Table of contents levels
+
+The table of contents is two levels deep. The deck files add the top-level
+group slides ("Coding agents", the agent's name, and "Agents" in the index),
+and the section slides they import have `level: 2`, so `<Toc/>` indents them
+under their group. Next steps and Side by side stay at the top level.
+
+Give every `hideInToc: true` slide in a section file `level: 2` as well. A
+hidden slide left at the default level 1 becomes the parent of the next
+section, which then disappears from the table of contents along with it.
 
 # Update dependencies
 

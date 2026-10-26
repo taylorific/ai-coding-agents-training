@@ -1,8 +1,9 @@
 ---
 layout: section
+level: 2
 ---
 
-# Cursor
+# Getting started with Cursor
 
 <br>
 <br>
@@ -10,6 +11,7 @@ layout: section
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Cursor: editor and CLI
@@ -25,6 +27,7 @@ The editor installs from cursor.com for macOS, Windows and Linux. The rest of th
 
 ---
 hideInToc: true
+level: 2
 class: compact-table
 ---
 
@@ -47,6 +50,7 @@ source ~/.zshrc
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Getting started
@@ -68,6 +72,7 @@ Then, inside the session:
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Rules
@@ -91,6 +96,7 @@ Components are function components with named exports.
 
 ---
 hideInToc: true
+level: 2
 class: compact-table
 ---
 
@@ -117,6 +123,7 @@ Deny beats allow. Anything not allowed prompts for approval. `--force` (alias `-
 
 ---
 hideInToc: true
+level: 2
 class: compact-table
 ---
 

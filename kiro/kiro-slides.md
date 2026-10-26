@@ -1,8 +1,9 @@
 ---
 layout: section
+level: 2
 ---
 
-# Kiro
+# Getting started with Kiro
 
 <br>
 <br>
@@ -10,6 +11,7 @@ layout: section
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Kiro: IDE and CLI
@@ -25,6 +27,7 @@ Plans: Free (50 credits a month), then Pro, Pro+, Pro Max and Power with more cr
 
 ---
 hideInToc: true
+level: 2
 class: compact-table
 ---
 
@@ -45,6 +48,7 @@ The IDE runs on Windows 10/11 (x64, ARM64), macOS (Apple silicon, Intel), and Ub
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Getting started
@@ -68,6 +72,7 @@ In the IDE: open a folder and start a **spec** for anything bigger than a quick 
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Steering files
@@ -90,6 +95,7 @@ Every handler validates its input with the shared schema.
 
 ---
 hideInToc: true
+level: 2
 class: compact-table
 ---
 
@@ -113,6 +119,7 @@ Anything without a rule asks. `--trust-all-tools` turns prompts off: disposable 
 
 ---
 hideInToc: true
+level: 2
 ---
 
 # Scripting and extending
