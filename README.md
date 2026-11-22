@@ -93,7 +93,7 @@ agent presentation can share them.
 | [opencode](./opencode/) | OpenCode: install on macOS, Linux and Windows, getting started, daily use (`opencode-slides.md`); the trust layers in its own settings (`opencode-trust-slides.md`) |
 | [pi](./pi/) | Pi: install on macOS, Linux and Windows, getting started, daily use (`pi-slides.md`); the trust layers in its own settings (`pi-trust-slides.md`) |
 | [comparison](./comparison/comparison-slides.md) | All ten side by side, one shared `AGENTS.md` (index only) |
-| [local-models](./local-models/local-models-slides.md) | Running models locally: sizing, quantization, Ollama and LM Studio, connecting an agent, trust (index and its own deck; names agents, like comparison) |
+| [local-models](./local-models/local-models-slides.md) | Running models locally: sizing, quantization, Ollama and LM Studio, fitting the context on the GPU, running in a container, connecting an agent, trust (index and its own deck; names agents, like comparison) |
 | [next-steps](./next-steps/next-steps-slides.md) | What to do next, and why the Swamp Training deck follows |
 
 The deck files pull them in with `src:`:

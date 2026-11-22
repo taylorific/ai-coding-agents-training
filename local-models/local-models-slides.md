@@ -205,6 +205,29 @@ level: 2
 class: compact-table
 ---
 
+# Make the context fit on the GPU
+
+The context's working memory (the **KV cache**) can be compressed, like the weights. Measured with `qwen3:8b` on an 8 GB RTX 3060 Ti:
+
+| Context | Settings | Where it runs | Speed |
+| --- | --- | --- | --- |
+| 4K | defaults | 100% GPU | 75 tok/s, but too small for an agent |
+| 32K | defaults | 34% CPU / 66% GPU | 13 tok/s |
+| 32K | flash attention, `q8_0` cache | 15% CPU / 85% GPU | 29 tok/s |
+| 32K | flash attention, `q4_0` cache | **100% GPU** | **67 tok/s** |
+
+```bash
+OLLAMA_FLASH_ATTENTION=1 OLLAMA_KV_CACHE_TYPE=q8_0 ollama serve   # or q4_0 to fit more
+```
+
+Prefer `q8_0` if it fits; `q4_0` costs a little more accuracy. The OpenCode task passed 3 of 3 runs with `q4_0`.
+
+---
+hideInToc: true
+level: 2
+class: compact-table
+---
+
 # Models for coding agents
 
 | Memory | Try | Why |
@@ -291,6 +314,50 @@ lms ps                                       # what's loaded, and its context
 - Skip `lms load` and the API loads the model on first use, with only an **8K** context
 - If loading fails with "failed to allocate buffer for kv cache", add `--gpu 0.8` to keep part of the model on the CPU
 - On Apple Silicon, choose the **MLX** download when one is offered; it's usually faster
+
+---
+hideInToc: true
+level: 2
+---
+
+# Run the model in a container
+
+On Linux, install the NVIDIA driver and the **NVIDIA Container Toolkit**, then:
+
+```bash
+sudo nvidia-ctk runtime configure --runtime=docker && sudo systemctl restart docker
+docker run --rm --gpus all ubuntu nvidia-smi      # can a container see the GPU?
+
+docker run -d --name ollama --gpus=all \
+  -v ollama:/root/.ollama -p 11434:11434 \
+  -e OLLAMA_CONTEXT_LENGTH=32768 \
+  -e OLLAMA_FLASH_ATTENTION=1 -e OLLAMA_KV_CACHE_TYPE=q8_0 \
+  ollama/ollama
+docker exec ollama ollama pull qwen3:8b
+```
+
+- **Forget `--gpus` and it still works, on the CPU**: 6 tok/s instead of 75, with no error
+- The `ollama` volume keeps downloaded models when the container is replaced
+- On a Mac, Docker Desktop and Apple's `container` can't give a container the GPU. Run Ollama natively there
+
+---
+hideInToc: true
+level: 2
+---
+
+# Is the GPU doing the work?
+
+```bash
+docker logs ollama | grep "inference compute"    # library=CUDA, not library=cpu
+docker exec ollama ollama ps                     # PROCESSOR: 100% GPU
+nvidia-smi                                       # memory used, and GPU-Util
+nvidia-smi dmon -s um                            # live, every second: sm = busy %, fb = MB used
+```
+
+- **Aim for 100% GPU** in `ollama ps`. Any CPU share slows every token, not just a few
+- **GPU-Util near 100%** while it generates means the GPU is the limit, which is what you want
+- **Free the VRAM**: a second loaded model, LM Studio or a desktop session all take memory. `ollama stop <model>` unloads one
+- If it still doesn't fit: shrink the KV cache, then the context, then pick a smaller model
 
 ---
 hideInToc: true
