@@ -150,6 +150,29 @@ hideInToc: true
 level: 2
 ---
 
+# Make your usage limits go further
+
+**Keep the cache warm**
+
+- Pick `/model` and `/effort` at the start. Each model has its own cache, so a switch rereads everything
+- Cheaper model for a side task? *"Use a Haiku subagent to summarize these files"*: it has its own cache
+- The cache lasts **1 hour** on a subscription, **5 minutes** on an API key, cloud provider or usage credits (`promptCacheTtl` changes it)
+- `/usage` shows the hit ratio, warm or cold, and the cause of the last miss
+
+**Keep the context small**
+
+- `/clear` per task; `/compact` at a natural break; `/rewind` to back out (cheaper than compacting)
+- `CLAUDE.md` under **200 lines** (`/context` shows what loads); procedures go in skills
+
+<!--
+Checked against the Claude Code docs (prompt caching, memory). Things that do NOT break the cache, contrary to popular advice: connecting MCP servers when tool search is on (the default), editing CLAUDE.md mid-session (it only reloads on /clear, /compact or restart), invoking skills, and spawning subagents. A statusline can also show cache reads and writes per turn.
+-->
+
+---
+hideInToc: true
+level: 2
+---
+
 # Scripting and parallel work
 
 ```bash
