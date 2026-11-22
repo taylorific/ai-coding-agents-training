@@ -31,9 +31,9 @@ jobs:
 
       - name: Build
         run: |
-          # The index deck at the site root, then one presentation per agent
+          # The index deck at the site root, then one presentation per agent, then local models
           npx slidev build slides.md --base /ai-coding-agents-training/ --out dist
-          for deck in claude-code codex gemini-cli antigravity cursor copilot amp kiro opencode pi; do
+          for deck in claude-code codex gemini-cli antigravity cursor copilot amp kiro opencode pi local-models; do
             npx slidev build "$deck.md" --base "/ai-coding-agents-training/$deck/" --out "dist/$deck"
           done
 
