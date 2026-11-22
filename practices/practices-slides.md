@@ -74,6 +74,48 @@ hideInToc: true
 level: 2
 ---
 
+# Why long sessions use up your limits
+
+The model remembers nothing between messages. **Every message resends the whole session**: the agent's instructions and tools, your instructions file, every file it read, every reply.
+
+- Agents read far more than they write. One heavy user's month: about **160 million tokens read, 500,000 written**
+- **Prompt caching** keeps the part of the conversation already processed, so only the new part is processed at full price. Cached input costs a fraction of normal input
+- The cache only matches if the **start of the conversation stays exactly the same**. Change something early on and everything after it is processed again
+- The cache **expires**, after minutes to an hour depending on the agent and plan. The first message after a break rereads everything
+
+So the goal isn't to use the agent less. It's to stop making it start from scratch.
+
+<!--
+The 160M / 500K figures are from one creator's logs over seven tasks, quoted in a video explaining advice from Anthropic engineers. Read-heavy is typical for every coding agent: each turn re-sends the whole history.
+-->
+
+---
+hideInToc: true
+level: 2
+class: compact-table
+---
+
+# Three habits that waste tokens
+
+| Habit | Why it costs | Instead |
+| --- | --- | --- |
+| **Changing the setup mid-session**: switching models, and in some agents adding tools | Each model keeps its own cache, so a switch rereads the whole conversation at full price | Choose the model and tools first. Send cheaper side work to a **subagent** or a new session, which have their own cache |
+| **One session for everything**, all day | Every message carries every earlier task | **One task per session**. Clear or compact between tasks. Name the file and function instead of "find the bug" |
+| **A long instructions file** | It loads into every session, and long files are followed less reliably | Keep it short. Move step-by-step procedures into **skills**, which load only when used. Re-test them when the model changes |
+
+Switching to a cheaper model for one quick question can cost more than finishing on the model you're using.
+
+<!--
+Source: a video summarizing advice from Anthropic's Claude Code team, checked against the Claude Code prompt caching docs. The same mechanics apply to any agent that uses prompt caching.
+
+Anthropic's engineers reportedly cut about 80% of their own system prompt for newer models with no measurable drop: newer models need fewer rules, and conflicting rules ("document everything" vs "don't add comments") make results worse.
+-->
+
+---
+hideInToc: true
+level: 2
+---
+
 # Use git as your safety net
 
 - Start from a clean working tree, on a branch

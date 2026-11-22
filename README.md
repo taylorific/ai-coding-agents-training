@@ -80,7 +80,7 @@ agent presentation can share them.
 | Directory | Covers |
 | --- | --- |
 | [fundamentals](./fundamentals/fundamentals-slides.md) | The agent loop, context, instruction files, permissions, extending an agent |
-| [practices](./practices/practices-slides.md) | Writing tasks, plan then build, verification, git, review, security |
+| [practices](./practices/practices-slides.md) | Writing tasks, plan then build, verification, token usage and prompt caching, git, review, security |
 | [trust](./trust/trust-slides.md) | Agent trust as a system design problem (after [Paul Stack](https://stack72.dev/agent-trust-is-a-system-design-problem/)) |
 | [claude-code](./claude-code/) | Claude Code: install on macOS, Linux and Windows, getting started, daily use (`claude-code-slides.md`); the trust layers in its own settings (`claude-code-trust-slides.md`) |
 | [codex](./codex/) | OpenAI Codex CLI: install on macOS, Linux and Windows, getting started, daily use (`codex-slides.md`); the trust layers in its own settings (`codex-trust-slides.md`) |
