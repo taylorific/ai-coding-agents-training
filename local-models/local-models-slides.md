@@ -80,8 +80,9 @@ A model's weights have to fit in GPU memory (or a Mac's unified memory), **plus*
 | 64 GB+ Mac / 48 GB+ GPU | 70B+, large mixture-of-experts | The best local results |
 
 - Rule of thumb at 4-bit: **about 0.6 GB per billion parameters**, so a 30B model is ~18 GB
+- **Context costs memory too**: on an 8 GB GPU, `qwen3:8b` fits at a 4K context (5.6 GB), but at 32K it needs 10 GB and spills onto the CPU
 - A Mac lets the GPU use roughly two-thirds to three-quarters of its RAM by default
-- **Mixture-of-experts** (MoE) models only run a few billion parameters per token: big-model knowledge, small-model speed, but they still need memory for all of it
+- **Mixture-of-experts** (MoE) models only run a few billion parameters per token, but they still need memory for all of them
 
 ---
 hideInToc: true
@@ -144,6 +145,8 @@ brew services start ollama
 
 The desktop app and the Linux installer start the server for you. It listens on `localhost:11434`.
 
+On Linux with an NVIDIA card, install the NVIDIA driver first and check that `nvidia-smi` works. Without it, Ollama runs on the CPU.
+
 ---
 hideInToc: true
 level: 2
@@ -152,11 +155,11 @@ level: 2
 # Your first local model
 
 ```bash
-ollama pull gpt-oss:20b       # download once (~14 GB)
+ollama pull gpt-oss:20b       # download once (13 GB)
 ollama run gpt-oss:20b        # chat in the terminal; /bye to exit
 
 ollama list                   # what's downloaded
-ollama ps                     # what's loaded, and whether it's on the GPU
+ollama ps                     # what's loaded: GPU vs CPU, and the context
 ollama rm gpt-oss:20b         # free the disk space
 ```
 
@@ -169,7 +172,7 @@ curl http://localhost:11434/v1/chat/completions \
        "messages": [{"role": "user", "content": "Say hello"}]}'
 ```
 
-If `ollama ps` shows **CPU** rather than **GPU**, the model doesn't fit. Choose a smaller one.
+If `ollama ps` shows a split such as **`15%/85% CPU/GPU`**, the model doesn't fit in GPU memory. It still works, but more slowly.
 
 ---
 hideInToc: true
@@ -180,17 +183,18 @@ level: 2
 
 A coding agent's system prompt and tool definitions alone can fill **10,000+ tokens** before your task starts.
 
-- Ollama's default context is small. Requests that don't fit are **silently truncated**: the agent forgets its instructions and makes broken tool calls
+- Ollama defaults to **4K** on smaller GPUs. Longer prompts are **silently truncated**: in testing, OpenCode's 8,569-token prompt was cut to 2,050, and the agent wrote to a made-up path and then reported success
 - Set it explicitly for agent work: **32K at minimum, 64K if you have the memory**
-- A larger context uses more memory, so check `ollama ps` again afterwards
+- Check the **CONTEXT** column in `ollama ps`, and whether the model still fits on the GPU
 
 ```bash
 # Command line / Homebrew
 OLLAMA_CONTEXT_LENGTH=65536 ollama serve
 
-# Linux service: sudo systemctl edit ollama, then add
+# Linux service: sudo systemctl edit ollama, add these lines, then restart
 #   [Service]
 #   Environment="OLLAMA_CONTEXT_LENGTH=65536"
+sudo systemctl restart ollama
 ```
 
 In the desktop app: **Settings → Context length**.
@@ -205,12 +209,13 @@ class: compact-table
 
 | Memory | Try | Why |
 | --- | --- | --- |
-| 16 GB | `gpt-oss:20b` | MoE, fast, reliable tool calls |
-| 24–32 GB | `qwen3-coder:30b` | MoE trained for agentic coding, long context |
-| 24–32 GB | `devstral` | Trained specifically to drive coding agents |
+| 8 GB | `qwen3.5:4b` | Small, with tool use (~6 GB) |
+| 16 GB | `gpt-oss:20b`, `gemma4:12b` | Fast, reliable tool calls |
+| 24–32 GB | `qwen3-coder:30b`, `devstral` | Trained for agentic coding |
+| 32 GB+ | `qwen3.8:27b` | Coding and long agentic tasks (~28 GB) |
 | 64 GB+ | `gpt-oss:120b`, `qwen3-coder-next` | The closest you'll get to a hosted model |
 
-- Check **ollama.com/library** for current tags; this list goes out of date fast
+- `ollama launch` lists Ollama's current recommendations; this table goes out of date fast
 - Test two models on **your own** tasks; benchmark rankings rarely match day-to-day use
 
 <!--
@@ -224,20 +229,19 @@ level: 2
 
 # Connect an agent: `ollama launch`
 
-Ollama can configure and start several coding agents against a local model in one step:
+Ollama configures and starts a coding agent against a local model:
 
 ```bash
-ollama launch                                      # pick an agent from a list
+ollama launch                                      # pick an agent and model
 ollama launch claude --model qwen3-coder:30b       # Claude Code
-ollama launch codex --model gpt-oss:20b            # Codex
 ollama launch opencode --model qwen3-coder:30b     # OpenCode
-
-ollama launch opencode --config                    # write the config, don't start
+ollama launch pi --model qwen3-coder:30b           # Pi; also codex, copilot...
 ```
 
-- Needs Ollama **0.15 or later**, and the agent already installed
-- It sets the agent's base URL and model for you: no API keys, no config files to edit
-- Run `ollama launch` with no arguments to see which agents your version supports
+- Needs Ollama **0.15 or later**, and the agent already installed. `ollama launch --help` lists the agents
+- It opens a model picker with your `--model` preselected; press Enter, then confirm
+- Start the agent with `ollama launch` each time. It doesn't write a config file the agent can use on its own
+- **Models ending in `:cloud` run on Ollama's servers, not yours.** The picker lists them first
 
 ---
 hideInToc: true
@@ -262,9 +266,8 @@ Any agent that accepts an OpenAI-compatible base URL works. OpenCode, in `openco
 }
 ```
 
-- **Pi**: Ollama is one of its built-in providers; choose it in `/model`
+- Check it with `opencode models ollama`, then select the model with `/models`
 - **LM Studio** or **llama.cpp**: the same config, with their port in the base URL
-- Then use `/models` (or your agent's equivalent) to select the local model
 
 ---
 hideInToc: true
@@ -273,18 +276,21 @@ level: 2
 
 # The same with LM Studio
 
-LM Studio is a desktop app (from **lmstudio.ai**) that includes the `lms` command line tool:
+A desktop app from **lmstudio.ai**, with the `lms` command line tool:
 
 ```bash
-lms get qwen3-coder-30b        # search for and download a model
-lms load qwen3-coder-30b \
-  --context-length 65536       # load it with an agent-sized context
-lms server start               # serve on http://localhost:1234/v1
-lms ps                         # what's loaded
+curl -fsSL https://lmstudio.ai/install.sh | sh  # headless, for servers
+lms get qwen3-8b --yes                       # picks a build that fits your GPU
+lms load qwen/qwen3-8b -c 32768 \
+  --estimate-only                            # how much memory will it need?
+lms load qwen/qwen3-8b -c 32768              # load with an agent-sized context
+lms server start                             # serve on http://localhost:1234/v1
+lms ps                                       # what's loaded, and its context
 ```
 
+- Skip `lms load` and the API loads the model on first use, with only an **8K** context
+- If loading fails with "failed to allocate buffer for kv cache", add `--gpu 0.8` to keep part of the model on the CPU
 - On Apple Silicon, choose the **MLX** download when one is offered; it's usually faster
-- The app lets you compare models side by side before you give one to an agent
 
 ---
 hideInToc: true
