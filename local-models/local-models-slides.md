@@ -183,7 +183,7 @@ level: 2
 
 A coding agent's system prompt and tool definitions alone can fill **10,000+ tokens** before your task starts.
 
-- Ollama defaults to **4K** on smaller GPUs. Longer prompts are **silently truncated**: in testing, OpenCode's 8,569-token prompt was cut to 2,050, and the agent wrote to a made-up path and then reported success
+- Ollama defaults to **4K under 24 GB of VRAM** (32K up to 48 GB). Longer prompts are **silently truncated**: in testing, OpenCode's 8,569-token prompt was cut to 2,050, and the agent wrote to a made-up path and then reported success
 - Set it explicitly for agent work: **32K at minimum, 64K if you have the memory**
 - Check the **CONTEXT** column in `ollama ps`, and whether the model still fits on the GPU
 
@@ -225,6 +225,29 @@ Prefer `q8_0` if it fits; `q4_0` costs a little more accuracy. The OpenCode task
 ---
 hideInToc: true
 level: 2
+---
+
+# Thinking models need room to finish
+
+Many models write a private draft (**thinking**) before they answer, and every token of it uses context.
+
+- Measured: `qwen3:8b` on a hard math question **at 4K** thought for 13,000 tokens. Ollama dropped the oldest half of the context, **including the question**, and the model solved a problem it made up. **At 32K** it answered the real question
+- With a token limit instead, the thinking uses it all up and the **answer comes back blank**, with no error
+- Give thinking models **16K at the very least**; agents need 32K anyway
+- Models differ a lot in how much they think. A short thinker suits small GPUs and quick back-and-forth
+
+```bash
+ollama run qwen3:8b --think=false     # or low / medium / high on models that support it
+ollama run qwen3:8b --hidethinking    # think, but only show the answer
+```
+
+<!--
+The log line for the dropped context is "slot context shift" in the Ollama server log. Source for blank answers: an independent test of community builds of one 27B model found 15-45% of answers never finished thinking within a 15K-token budget; at 8K, the best build truncated 48%.
+-->
+
+---
+hideInToc: true
+level: 2
 class: compact-table
 ---
 
@@ -244,6 +267,22 @@ class: compact-table
 <!--
 This slide dates fastest of anything in the deck. Before each delivery, check the Ollama library and update the tags and memory figures.
 -->
+
+---
+hideInToc: true
+level: 2
+---
+
+# Choosing a community build: test, don't trust
+
+Beyond the official library there are thousands of community builds of each model. What their pages advertise is rarely what matters.
+
+- **Downloads measure visibility, not quality.** In one test of 23 builds of the same model, the most downloaded was the most damaged: 21 points worse at math
+- **Check the base model.** Names get misused: a "DeepSeek" 9B going around is really a fine-tuned Qwen
+- **Check the chat template.** It wraps every message, and a custom one can change behavior more than 4-bit quantization does
+- **Check the file size, not just the label.** Two "Q4" files of one model differed by 1 GB. Q6 is nearly as good as Q8 and leaves room for context
+
+**Run 20 of your own prompts and count the answers that never arrive.** Then raise the context and run them again: if the blanks go away it was the budget, if not it's the model.
 
 ---
 hideInToc: true
@@ -372,7 +411,12 @@ A local model keeps your **data** on the machine. It doesn't change what the **a
 - Smaller models make **more mistakes**: wrong files, bad commands, made-up APIs. Tighten your permission rules, don't relax them
 - Every trust layer still applies: allow lists, sandboxes, and gates on the remote
 - A model file is something you choose to trust, like a dependency. Download models from the runtime's own library or from publishers you recognize
+- **"Uncensored" builds** have refusals edited out, and **truthfulness goes first**: up to 14 points lost in one test. A confidently wrong answer is worse than a refusal
 - Keep the server on `localhost`. Ollama and LM Studio have no authentication by default
+
+<!--
+Source for the community-build figures on these slides: a video walking through an independent benchmark of eight "uncensored" builds of one 27B model (13 tasks plus 400 HarmBench prompts, 167 GPU hours), and 23 builds of a small model. Refusals were near zero for most builds; the differences were in unfinished answers and truthfulness. Check your organization's policy before using modified models.
+-->
 
 ---
 hideInToc: true
