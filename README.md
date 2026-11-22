@@ -48,6 +48,7 @@ There's one presentation per agent, each specific to that agent, plus an index:
 | Working with Kiro | [kiro.md](./kiro.md) | [/kiro/](https://taylorific.github.io/ai-coding-agents-training/kiro/) |
 | Working with OpenCode | [opencode.md](./opencode.md) | [/opencode/](https://taylorific.github.io/ai-coding-agents-training/opencode/) |
 | Working with Pi | [pi.md](./pi.md) | [/pi/](https://taylorific.github.io/ai-coding-agents-training/pi/) |
+| Running models locally | [local-models.md](./local-models.md) | [/local-models/](https://taylorific.github.io/ai-coding-agents-training/local-models/) |
 
 Each agent's directory has a README with its own commands to present the deck,
 and how to install and start the agent.
@@ -92,6 +93,7 @@ agent presentation can share them.
 | [opencode](./opencode/) | OpenCode: install on macOS, Linux and Windows, getting started, daily use (`opencode-slides.md`); the trust layers in its own settings (`opencode-trust-slides.md`) |
 | [pi](./pi/) | Pi: install on macOS, Linux and Windows, getting started, daily use (`pi-slides.md`); the trust layers in its own settings (`pi-trust-slides.md`) |
 | [comparison](./comparison/comparison-slides.md) | All ten side by side, one shared `AGENTS.md` (index only) |
+| [local-models](./local-models/local-models-slides.md) | Running models locally: sizing, quantization, Ollama and LM Studio, connecting an agent, trust (index and its own deck; names agents, like comparison) |
 | [next-steps](./next-steps/next-steps-slides.md) | What to do next, and why the Swamp Training deck follows |
 
 The deck files pull them in with `src:`:

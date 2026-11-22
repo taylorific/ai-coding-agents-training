@@ -409,3 +409,7 @@ class: compact-table
 ---
 src: ./comparison/comparison-slides.md
 ---
+
+---
+src: ./local-models/local-models-slides.md
+---
