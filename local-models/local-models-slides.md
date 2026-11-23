@@ -48,6 +48,24 @@ hideInToc: true
 level: 2
 ---
 
+# Buy, rent, or both?
+
+- **More memory often buys the same model**, with more bits and more context, not a smarter one. Check what the next tier actually runs before you pay for it
+- **Owning is priced by total parameters, renting by active ones.** A big mixture-of-experts model needs a lot of memory to own but does little work per token, so it's cheap to rent through an API
+- **Rent first.** Use the model you're considering through an API for a week, with non-sensitive work, before you buy hardware for it
+- **Compare side by side.** Run five real prompts locally and on a hosted frontier model. That tells you which jobs the local model is good enough for
+
+Owning pays off for **compliance** (the data can't leave), **scale** (many agents in parallel, each with its own context in memory) and **control** (fine-tuning, and nobody can retire the model).
+
+<!--
+Source: two videos comparing hardware tiers from 8 GB GPUs to 1 TB of unified memory. In their figures, several memory doublings ran the same model at higher precision with no change in benchmark score, and a large MoE model that needs 128 GB to own cost about a twentieth as much per token to rent as a 27B dense model. Prices change weekly; check before quoting.
+-->
+
+---
+hideInToc: true
+level: 2
+---
+
 # How the pieces fit
 
 ```mermaid {scale: 0.8}
@@ -81,8 +99,8 @@ A model's weights have to fit in GPU memory (or a Mac's unified memory), **plus*
 
 - Rule of thumb at 4-bit: **about 0.6 GB per billion parameters**, so a 30B model is ~18 GB
 - **Context costs memory too**: on an 8 GB GPU, `qwen3:8b` fits at a 4K context (5.6 GB), but at 32K it needs 10 GB and spills onto the CPU
-- A Mac lets the GPU use roughly two-thirds to three-quarters of its RAM by default
-- **Mixture-of-experts** (MoE) models only run a few billion parameters per token, but they still need memory for all of them
+- **The desktop takes its share**: 1–2 GB of VRAM on Windows, so a 16.5 GB file doesn't fit a 16 GB card
+- A Mac gives the GPU about **¾ of its RAM**. `sudo sysctl iogpu.wired_limit_mb=<MB>` raises that until the next reboot
 
 ---
 hideInToc: true
@@ -241,7 +259,28 @@ The context's working memory (the **KV cache**) can be compressed, like the weig
 OLLAMA_FLASH_ATTENTION=1 OLLAMA_KV_CACHE_TYPE=q8_0 ollama serve   # or q4_0 to fit more
 ```
 
-Prefer `q8_0` if it fits; `q4_0` costs a little more accuracy. The OpenCode task passed 3 of 3 runs with `q4_0`.
+Prefer `q8_0` if it fits; `q4_0` costs a little more accuracy. The OpenCode task passed 3 of 3 runs with `q4_0`. Some models lose more from a compressed cache than others, so test yours.
+
+---
+hideInToc: true
+level: 2
+class: compact-table
+---
+
+# When it doesn't fit: dense vs mixture-of-experts
+
+Measured on the 8 GB RTX 3060 Ti with 61 GB of system RAM, 8K context:
+
+| Model | Kind | File | Where it runs | Speed |
+| --- | --- | --- | --- | --- |
+| `qwen3:8b` | dense | 5.2 GB | 100% GPU | 75 tok/s |
+| `qwen3:14b` | dense | 9.3 GB | 31% CPU / 69% GPU | **10 tok/s** |
+| `qwen3-coder:30b` | MoE, ~3B active | 18 GB | experts in system RAM | **28 tok/s** |
+
+- A **dense** model reads every weight for every token. Spill a third into system RAM (~50 GB/s, against 448 GB/s on the card) and everything waits on it
+- A **mixture-of-experts** model only reads its few active experts per token, so they can live in system RAM. The 18 GB model was nearly 3× faster than the 9.3 GB one
+- On a small GPU, **system RAM is the spec to check**: the MoE model needs its full size free there
+- Ollama handled it automatically. In llama.cpp, `--cpu-moe` keeps all experts in RAM (23 tok/s using 2 GB of VRAM); `--n-cpu-moe N` keeps only the first N layers' experts there
 
 ---
 hideInToc: true
@@ -253,7 +292,7 @@ level: 2
 A model works in two phases with different limits:
 
 - **Reading the prompt** handles all its tokens at once, so it's limited by the GPU's **compute**. Measured: a 7,000-token prompt in 2.4 s on the 3060 Ti
-- **Writing the answer** reads every weight from memory for **each** token, so it's limited by **memory bandwidth**: tokens/s ≈ bandwidth ÷ model size. 448 GB/s ÷ 5.2 GB ≈ 86 tok/s at most; measured 58–75
+- **Writing the answer** reads every weight from memory for **each** token, so it's limited by **memory bandwidth**: tokens/s ≈ bandwidth ÷ bytes read per token (the whole file, or only the active experts for MoE). 448 GB/s ÷ 5.2 GB ≈ 86 tok/s at most; measured 58–75
 - A **smaller file writes faster**. A faster number format, like NVFP4 on RTX 50 cards, mostly **reads** faster
 - Agents send long prompts every turn, so reading speed matters more for agents than for chat
 - Local runtimes cache prompts too: sending the same 7,000-token prompt again took **0 s** to read
@@ -294,7 +333,7 @@ Many models write a private draft (**thinking**) before they answer, and every t
 - Measured: `qwen3:8b` on a hard math question **at 4K** thought for 13,000 tokens. Ollama dropped the oldest half of the context, **including the question**, and the model solved a problem it made up. **At 32K** it answered the real question
 - With a token limit instead, the thinking uses it all up and the **answer comes back blank**, with no error
 - Give thinking models **16K at the very least**; agents need 32K anyway
-- Models differ a lot in how much they think. A short thinker suits small GPUs and quick back-and-forth
+- **Count minutes per task, not tokens per second**: 20,000 thinking tokens at 4 tok/s is 80 minutes before the first line of output. A fast model that rambles can lose to a slower one that gets to the point
 
 ```bash
 ollama run qwen3:8b --think=false     # or low / medium / high on models that support it
