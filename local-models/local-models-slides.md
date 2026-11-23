@@ -89,19 +89,40 @@ hideInToc: true
 level: 2
 ---
 
-# Quantization and file formats
+# The box, the engine and the numbers
+
+Download pages mix up three different kinds of thing:
+
+| Kind | What it is | Examples |
+| --- | --- | --- |
+| **File format** (the box) | How the weights are packaged | GGUF: one file that runs almost anywhere |
+| **Engine** | The software that runs them | llama.cpp (inside Ollama and LM Studio), MLX on Apple Silicon, vLLM on NVIDIA servers |
+| **Number format** (what's inside) | How each weight is written down | `Q8_0`, `Q6_K`, `Q4_K_M`, `IQ3`, MLX 4-bit, NVFP4 |
+
+"GGUF or NVFP4?" is like asking "the box or what's in it?" NVFP4 can sit inside a GGUF file, and a "4-bit" MLX download is a folder of weights for the MLX engine. Pick the engine for your chip first, then the numbers.
+
+Agents need **tool calling**, too: pick models that list "tools" support.
+
+---
+hideInToc: true
+level: 2
+class: compact-table
+---
+
+# Quantization: fewer bits per weight
 
 **Quantization** stores each weight in fewer bits, trading a little quality for a lot of memory.
 
-| Tag | Bits per weight | Notes |
+| Format | Bits per weight | Notes |
 | --- | --- | --- |
-| `Q8_0` | 8 | Nearly lossless; twice the memory of 4-bit |
-| `Q4_K_M` | ~4.5 | The usual default: a good balance |
-| `Q2`, `Q3` | 2–3 | Fits more, but agents start making mistakes |
+| `Q8_0` | ~8.5 | Nearly lossless; almost twice the size of 4-bit |
+| `Q6_K` | ~6.6 | Nearly as good as `Q8_0`, with more room for context |
+| `Q4_K_M` | ~4.9 | The usual default; sensitive layers are kept at 6 bits |
+| MLX 4-bit, NVFP4 | ~4.5 | NVFP4 is only fast on NVIDIA RTX 50 (Blackwell) hardware |
+| `IQ3`, `Q3` | ~3–3.7 | Fits more, but agents start making mistakes |
 
-- **GGUF**: one file per model; used by llama.cpp, Ollama and LM Studio, on any platform
-- **MLX**: Apple's format for Apple Silicon; often faster on a Mac. LM Studio runs both
-- Agents need **tool calling**: pick models that list "tools" support
+- **Labels name the smallest part, not the average.** An "NVFP4" build of a 27B model was 22 GB against 16.5 GB for `Q4_K_M`, because its attention layers stayed at 8 bits
+- **Who did the rounding matters more than the label.** Two "NVFP4" files of one model were 8.8 GB apart and scored differently. Prefer calibrated builds from the model's maker, or from teams that publish benchmarks
 
 ---
 hideInToc: true
@@ -227,6 +248,45 @@ hideInToc: true
 level: 2
 ---
 
+# Reading is compute, writing is memory
+
+A model works in two phases with different limits:
+
+- **Reading the prompt** handles all its tokens at once, so it's limited by the GPU's **compute**. Measured: a 7,000-token prompt in 2.4 s on the 3060 Ti
+- **Writing the answer** reads every weight from memory for **each** token, so it's limited by **memory bandwidth**: tokens/s ≈ bandwidth ÷ model size. 448 GB/s ÷ 5.2 GB ≈ 86 tok/s at most; measured 58–75
+- A **smaller file writes faster**. A faster number format, like NVFP4 on RTX 50 cards, mostly **reads** faster
+- Agents send long prompts every turn, so reading speed matters more for agents than for chat
+- Local runtimes cache prompts too: sending the same 7,000-token prompt again took **0 s** to read
+
+If it barely fits, drop to a smaller quantization before you shrink the context. A 3-bit model with room to work beats a 4-bit model that runs out.
+
+---
+hideInToc: true
+level: 2
+class: compact-table
+---
+
+# Which file should you download?
+
+Answer three questions, in order:
+
+| Question | Answer |
+| --- | --- |
+| **1. Which engine runs on your chip?** | **Apple Silicon Mac**: an MLX build, in LM Studio or Ollama's MLX engine (preview). **NVIDIA RTX 30/40, AMD, Intel, CPU**: a GGUF `Q4_K_M`. **RTX 50**: GGUF for chat; NVFP4 on vLLM or SGLang for long prompts and agents |
+| **2. Who did the rounding?** | The model's maker, or a known team that publishes benchmarks. Avoid flat conversions from unknown accounts |
+| **3. What's left for the conversation?** | Model file plus context must fit in GPU memory. Check `ollama ps` for 100% GPU at the context you need |
+
+**Trap**: an NVFP4 GGUF in plain llama.cpp on a Mac runs on the CPU, at about 1 token/s.
+
+<!--
+Source: a video explaining quantization formats, with figures from several community benchmarks. Ollama's own MLX benchmark went from 58 to 112 tok/s, but that compared its old engine with Q4_K_M against the MLX engine with NVFP4. The video reports the plain MLX 4-bit build on the same engine was faster still (134 tok/s): the speed-up came from the engine, not from NVFP4. Ollama ships NVFP4 for quality and to match hosted services. NVFP4 kernels are changing fast, so re-check numbers before each delivery.
+-->
+
+---
+hideInToc: true
+level: 2
+---
+
 # Thinking models need room to finish
 
 Many models write a private draft (**thinking**) before they answer, and every token of it uses context.
@@ -280,7 +340,7 @@ Beyond the official library there are thousands of community builds of each mode
 - **Downloads measure visibility, not quality.** In one test of 23 builds of the same model, the most downloaded was the most damaged: 21 points worse at math
 - **Check the base model.** Names get misused: a "DeepSeek" 9B going around is really a fine-tuned Qwen
 - **Check the chat template.** It wraps every message, and a custom one can change behavior more than 4-bit quantization does
-- **Check the file size, not just the label.** Two "Q4" files of one model differed by 1 GB. Q6 is nearly as good as Q8 and leaves room for context
+- **Check the file size, not just the label.** Two "Q4" files of one model differed by 1 GB, and that gigabyte comes out of your context
 
 **Run 20 of your own prompts and count the answers that never arrive.** Then raise the context and run them again: if the blanks go away it was the budget, if not it's the model.
 
